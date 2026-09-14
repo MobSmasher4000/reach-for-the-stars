@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "alltheores:steel_plate"
+    },
+    "B": {
+      "item": "alltheores:steel_ingot"
+    },
+    "C": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "item": "reach_for_the_stars:fuel_distillery_controller"
+  },
+  "show_notification": true
+}

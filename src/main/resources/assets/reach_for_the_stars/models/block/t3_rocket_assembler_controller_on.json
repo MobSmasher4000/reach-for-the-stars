@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "reach_for_the_stars:block/t3_rocket_assembler_controller_side",
+    "east": "reach_for_the_stars:block/t3_rocket_assembler_controller_side",
+    "north": "reach_for_the_stars:block/t3_rocket_assembler_controller_formed",
+    "particle": "reach_for_the_stars:block/t3_rocket_assembler_controller_side",
+    "south": "reach_for_the_stars:block/t3_rocket_assembler_controller_side",
+    "up": "reach_for_the_stars:block/t3_rocket_assembler_controller_side",
+    "west": "reach_for_the_stars:block/t3_rocket_assembler_controller_side"
+  }
+}

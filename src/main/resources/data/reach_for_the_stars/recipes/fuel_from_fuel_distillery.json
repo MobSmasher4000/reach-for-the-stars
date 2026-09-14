@@ -1,0 +1,11 @@
+{
+    "type": "reach_for_the_stars:fuel_distillery",
+    "fluid": {
+        "amount": 100,
+        "fluid": "immersiveengineering:biodiesel"
+    },
+    "result": {
+        "amount": 50,
+        "fluid": "ad_astra:fuel"
+    }
+}

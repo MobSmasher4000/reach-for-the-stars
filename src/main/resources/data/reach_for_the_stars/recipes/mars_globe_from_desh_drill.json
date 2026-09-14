@@ -1,0 +1,12 @@
+{
+    "type": "reach_for_the_stars:desh_drill",
+    "fluid": {
+        "amount": 1000,
+        "fluid": "reach_for_the_stars:desh_drill_fluid"
+    },
+    "dimension": "ad_astra:mars",
+    "result": {
+        "count": 1,
+        "item": "ad_astra:mars_globe"
+    }
+}

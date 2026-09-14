@@ -1,0 +1,45 @@
+{
+  "type": "reach_for_the_stars:t2_rocket_assembler",
+  "ingredients": [
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "ad_astra:rocket_nose_cone"
+      }
+    },
+    {
+      "count": 6,
+      "ingredient": {
+        "item": "ad_astra:desh_block"
+      }
+    },
+    {
+      "count": 2,
+      "ingredient": {
+        "item": "ad_astra:desh_tank"
+      }
+    },
+    {
+      "count": 4,
+      "ingredient": {
+        "item": "ad_astra:rocket_fin"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "ad_astra:desh_engine"
+      }
+    },
+    {
+      "count": 1,
+      "ingredient": {
+        "item": "reach_for_the_stars:moon_core"
+      }
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "ad_astra:tier_2_rocket"
+  }
+}

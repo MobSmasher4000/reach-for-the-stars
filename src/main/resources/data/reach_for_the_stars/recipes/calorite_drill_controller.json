@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "ad_astra:calorite_block"
+    },
+    "B": {
+      "item": "ad_astra:calorite_ingot"
+    },
+    "C": {
+      "item": "reach_for_the_stars:ostrum_drill_controller"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "item": "reach_for_the_stars:calorite_drill_controller"
+  },
+  "show_notification": true
+}

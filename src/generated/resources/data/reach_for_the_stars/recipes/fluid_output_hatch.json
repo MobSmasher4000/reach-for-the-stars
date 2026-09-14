@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "reach_for_the_stars:fluid_input_hatch"
+    }
+  ],
+  "result": {
+    "item": "reach_for_the_stars:fluid_output_hatch"
+  }
+}

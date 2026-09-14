@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "ad_astra:desh_block"
+    },
+    "B": {
+      "item": "ad_astra:desh_ingot"
+    },
+    "C": {
+      "item": "reach_for_the_stars:t1_rocket_assembler_controller"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "item": "reach_for_the_stars:t2_rocket_assembler_controller"
+  },
+  "show_notification": true
+}

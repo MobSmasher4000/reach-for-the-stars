@@ -1,0 +1,12 @@
+{
+    "type": "reach_for_the_stars:ostrum_drill",
+    "fluid": {
+        "amount": 1000,
+        "fluid": "reach_for_the_stars:ostrum_drill_fluid"
+    },
+    "dimension": "ad_astra:mercury",
+    "result": {
+        "count": 1,
+        "item": "ad_astra:mercury_globe"
+    }
+}

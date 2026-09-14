@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "alltheores:steel_plate"
+    },
+    "B": {
+      "item": "alltheores:steel_ingot"
+    },
+    "C": {
+      "item": "immersiveengineering:drillhead_steel"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "result": {
+    "item": "reach_for_the_stars:steel_drill_controller"
+  },
+  "show_notification": true
+}

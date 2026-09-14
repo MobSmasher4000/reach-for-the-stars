@@ -1,0 +1,12 @@
+{
+  "type": "resource_capsules:resource_gen_tier_1",
+  "ingredients": [
+    {
+      "item": "reach_for_the_stars:earth_core"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "reach_for_the_stars:earth_shard"
+  }
+}

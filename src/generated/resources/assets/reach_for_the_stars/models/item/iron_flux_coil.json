@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "reach_for_the_stars:item/iron_flux_coil"
+  }
+}

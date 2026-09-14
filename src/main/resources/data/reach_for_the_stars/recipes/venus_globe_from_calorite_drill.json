@@ -1,0 +1,12 @@
+{
+    "type": "reach_for_the_stars:calorite_drill",
+    "fluid": {
+        "amount": 1000,
+        "fluid": "reach_for_the_stars:calorite_drill_fluid"
+    },
+    "dimension": "ad_astra:venus",
+    "result": {
+        "count": 1,
+        "item": "ad_astra:venus_globe"
+    }
+}

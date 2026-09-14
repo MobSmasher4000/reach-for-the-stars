@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "reach_for_the_stars:block/fluid_output_hatch",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "reach_for_the_stars:block/fluid_output_hatch",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "reach_for_the_stars:block/fluid_output_hatch"
+    },
+    "facing=south": {
+      "model": "reach_for_the_stars:block/fluid_output_hatch",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "reach_for_the_stars:block/fluid_output_hatch",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "reach_for_the_stars:block/fluid_output_hatch",
+      "y": 270
+    }
+  }
+}

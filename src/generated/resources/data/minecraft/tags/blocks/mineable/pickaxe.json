@@ -1,0 +1,19 @@
+{
+  "values": [
+    "reach_for_the_stars:item_input_hatch",
+    "reach_for_the_stars:item_output_hatch",
+    "reach_for_the_stars:fluid_input_hatch",
+    "reach_for_the_stars:fluid_output_hatch",
+    "reach_for_the_stars:energy_input_hatch",
+    "reach_for_the_stars:fuel_distillery_controller",
+    "reach_for_the_stars:steel_drill_controller",
+    "reach_for_the_stars:desh_drill_controller",
+    "reach_for_the_stars:ostrum_drill_controller",
+    "reach_for_the_stars:calorite_drill_controller",
+    "reach_for_the_stars:t1_rocket_assembler_controller",
+    "reach_for_the_stars:t2_rocket_assembler_controller",
+    "reach_for_the_stars:t3_rocket_assembler_controller",
+    "reach_for_the_stars:t4_rocket_assembler_controller",
+    "reach_for_the_stars:t5_rocket_assembler_controller"
+  ]
+}

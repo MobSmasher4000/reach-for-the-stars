@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "ad_astra:mars_sand"
+    },
+    "P": {
+      "item": "minecraft:clay"
+    }
+  },
+  "pattern": [
+    "BP ",
+    "PB ",
+    "   "
+  ],
+  "result": {
+    "item": "reach_for_the_stars:mars_clay"
+  },
+  "show_notification": true
+}

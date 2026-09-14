@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "reach_for_the_stars:blank_mold"
+    },
+    "P": {
+      "item": "alltheores:steel_plate"
+    }
+  },
+  "pattern": [
+    " P ",
+    "PBP",
+    "PPP"
+  ],
+  "result": {
+    "item": "reach_for_the_stars:rocket_nose_mold"
+  },
+  "show_notification": true
+}

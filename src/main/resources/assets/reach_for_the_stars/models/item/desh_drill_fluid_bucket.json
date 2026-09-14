@@ -1,0 +1,5 @@
+{
+  "parent": "forge:item/bucket",
+  "loader": "forge:fluid_container",
+  "fluid": "reach_for_the_stars:desh_drill_fluid"
+}

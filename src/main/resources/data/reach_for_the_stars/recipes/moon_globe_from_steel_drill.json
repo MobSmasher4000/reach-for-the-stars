@@ -1,0 +1,12 @@
+{
+    "type": "reach_for_the_stars:steel_drill",
+    "fluid": {
+        "amount": 1000,
+        "fluid": "reach_for_the_stars:steel_drill_fluid"
+    },
+    "dimension": "ad_astra:moon",
+    "result": {
+        "count": 1,
+        "item": "ad_astra:moon_globe"
+    }
+}
