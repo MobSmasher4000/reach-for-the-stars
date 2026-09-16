@@ -52,6 +52,8 @@
   "item.reach_for_the_stars.mercury_core" : "Mercury Core",
   "item.reach_for_the_stars.venus_core" : "Venus Core",
 
+  "item.reach_for_the_stars.planet_core_conglomerate" : "Planet Core Conglomerate",
+
   "item.reach_for_the_stars.earth_shard" : "Earth Shard",
   "item.reach_for_the_stars.moon_shard" : "Moon Shard",
   "item.reach_for_the_stars.glacio_shard" : "Glacio Shard",

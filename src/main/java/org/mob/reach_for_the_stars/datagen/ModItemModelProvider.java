@@ -38,6 +38,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.MOON_CORE);
         simpleItem(ModItems.MERCURY_CORE);
         simpleItem(ModItems.VENUS_CORE);
+        simpleItem(ModItems.PLANET_CORE_CONGLOMERATE);
 
         simpleItem(ModItems.EARTH_SHARD);
         simpleItem(ModItems.GLACIO_SHARD);

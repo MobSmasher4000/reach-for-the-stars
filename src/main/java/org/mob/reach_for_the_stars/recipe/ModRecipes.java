@@ -35,6 +35,12 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<T3RocketAssemblerRecipe>> T3_ROCKET_ASSEMBLER_SERIALIZER =
             SERIALIZERS.register("t3_rocket_assembler", () -> T3RocketAssemblerRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<T4RocketAssemblerRecipe>> T4_ROCKET_ASSEMBLER_SERIALIZER =
+            SERIALIZERS.register("t4_rocket_assembler", () -> T4RocketAssemblerRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<T5RocketAssemblerRecipe>> T5_ROCKET_ASSEMBLER_SERIALIZER =
+            SERIALIZERS.register("t5_rocket_assembler", () -> T5RocketAssemblerRecipe.Serializer.INSTANCE);
+
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

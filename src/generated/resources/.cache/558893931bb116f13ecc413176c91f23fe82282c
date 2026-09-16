@@ -1,4 +1,4 @@
-// 1.20.1	2026-09-14T16:46:35.4502532	Item Models: reach_for_the_stars
+// 1.20.1	2026-09-16T14:59:07.9585264	Item Models: reach_for_the_stars
 fbc552abce28b658ba31b0dac4d13fce087eb276 assets/reach_for_the_stars/models/item/air_essence.json
 6de161fb90278e2e4fdbd7f5924843f4f7dd5431 assets/reach_for_the_stars/models/item/blank_mold.json
 e6e4c9269fbaa33a4c204b11db4c6e17049f572b assets/reach_for_the_stars/models/item/earth_core.json
@@ -20,6 +20,7 @@ ef4e0104fcb257d2c9a33506e8fca1a3e9e383fa assets/reach_for_the_stars/models/item/
 3be528e80f792abad84bf9cc302ac9e2b42a17a6 assets/reach_for_the_stars/models/item/moon_core.json
 64075f9370e2bfa4066ccf3275ecdd2f1c6ae6f7 assets/reach_for_the_stars/models/item/moon_ingot.json
 17efbcd4ec06867ae42580208cc2d26c6d45469b assets/reach_for_the_stars/models/item/moon_shard.json
+c83db3d6fbdd4adae7e84852f6e7533b954ea2dc assets/reach_for_the_stars/models/item/planet_core_conglomerate.json
 0e5248a3ba0d9a013668cd2752a8b004e6a9a790 assets/reach_for_the_stars/models/item/rfts.json
 d8866ed807074949d68cadb74cc4326d4ba672bb assets/reach_for_the_stars/models/item/rocket_fin_mold.json
 68cd40b681acd1b8307ef326a4ec31b8bba35d23 assets/reach_for_the_stars/models/item/rocket_nose_mold.json

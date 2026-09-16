@@ -113,6 +113,9 @@ public class ModItems {
     public static final RegistryObject<Item> EXCLAMATION_MARK = ITEMS.register("exclamation_mark",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> PLANET_CORE_CONGLOMERATE = ITEMS.register("planet_core_conglomerate",
+            () -> new Item(new Item.Properties()));
+
 
     // Drill Fluids
     public static final RegistryObject<Item> STEEL_DRILL_FLUID_BUCKET = ITEMS.register("steel_drill_fluid_bucket",

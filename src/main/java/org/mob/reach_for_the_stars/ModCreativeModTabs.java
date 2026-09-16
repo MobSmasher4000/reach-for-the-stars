@@ -63,6 +63,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.MOON_CORE.get());
                         pOutput.accept(ModItems.MERCURY_CORE.get());
                         pOutput.accept(ModItems.VENUS_CORE.get());
+                        pOutput.accept(ModItems.PLANET_CORE_CONGLOMERATE.get());
 
                         pOutput.accept(ModItems.EARTH_SHARD.get());
                         pOutput.accept(ModItems.GLACIO_SHARD.get());
