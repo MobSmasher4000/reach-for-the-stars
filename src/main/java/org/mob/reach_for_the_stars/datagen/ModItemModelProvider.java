@@ -50,7 +50,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.EARTH_INGOT);
         simpleItem(ModItems.MOON_INGOT);
         simpleItem(ModItems.MARS_INGOT);
-        simpleItem(ModItems.MERCURY_CORE);
+        simpleItem(ModItems.MERCURY_INGOT);
         simpleItem(ModItems.VENUS_INGOT);
         simpleItem(ModItems.GLACIO_INGOT);
     }

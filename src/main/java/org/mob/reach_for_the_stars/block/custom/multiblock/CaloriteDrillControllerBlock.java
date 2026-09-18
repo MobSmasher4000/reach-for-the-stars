@@ -119,7 +119,7 @@ public class CaloriteDrillControllerBlock extends BaseEntityBlock {
             pTooltip.add(Component.translatable("tooltip.reach_for_the_stars.auto_build_list_info"));
         }else {
             for (int i = 1; i <9 ; i++) {
-                String tooltip = "tooltip.reach_for_the_stars.desh_drill_" + i;
+                String tooltip = "tooltip.reach_for_the_stars.calorite_drill_" + i;
                 pTooltip.add(Component.translatable(tooltip));
             }
         }

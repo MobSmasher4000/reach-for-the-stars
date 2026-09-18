@@ -1,4 +1,4 @@
-// 1.20.1	2026-09-16T14:59:07.9585264	Item Models: reach_for_the_stars
+// 1.20.1	2026-09-18T17:00:57.1882318	Item Models: reach_for_the_stars
 fbc552abce28b658ba31b0dac4d13fce087eb276 assets/reach_for_the_stars/models/item/air_essence.json
 6de161fb90278e2e4fdbd7f5924843f4f7dd5431 assets/reach_for_the_stars/models/item/blank_mold.json
 e6e4c9269fbaa33a4c204b11db4c6e17049f572b assets/reach_for_the_stars/models/item/earth_core.json
@@ -16,6 +16,7 @@ e6167b54e2f1409fd22938a03c5cce970e04e483 assets/reach_for_the_stars/models/item/
 7a6c8c065fbc68f071712090f43e4f4401395974 assets/reach_for_the_stars/models/item/mars_ingot.json
 73e11d49dee9ab402e520bfd3b63bf167b8ee7f0 assets/reach_for_the_stars/models/item/mars_shard.json
 408b9604d39613c15a811b5eb691a8fa98093d9d assets/reach_for_the_stars/models/item/mercury_core.json
+bfc4c560696b2eb7e4593cecbe036d00d1c4f2ab assets/reach_for_the_stars/models/item/mercury_ingot.json
 ef4e0104fcb257d2c9a33506e8fca1a3e9e383fa assets/reach_for_the_stars/models/item/mercury_shard.json
 3be528e80f792abad84bf9cc302ac9e2b42a17a6 assets/reach_for_the_stars/models/item/moon_core.json
 64075f9370e2bfa4066ccf3275ecdd2f1c6ae6f7 assets/reach_for_the_stars/models/item/moon_ingot.json
