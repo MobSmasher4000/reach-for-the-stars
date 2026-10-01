@@ -22,6 +22,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.IRON_FLUX_COIL);
         simpleItem(ModItems.MARS_CLAY);
         simpleItem(ModItems.EXCLAMATION_MARK);
+        simpleItem(ModItems.WINNER_PLANET);
 
         simpleItem(ModItems.BLANK_MOLD);
         simpleItem(ModItems.ROCKET_FIN_MOLD);

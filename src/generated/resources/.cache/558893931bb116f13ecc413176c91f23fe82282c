@@ -1,4 +1,4 @@
-// 1.20.1	2026-09-18T17:00:57.1882318	Item Models: reach_for_the_stars
+// 1.20.1	2026-10-01T12:17:12.8999538	Item Models: reach_for_the_stars
 fbc552abce28b658ba31b0dac4d13fce087eb276 assets/reach_for_the_stars/models/item/air_essence.json
 6de161fb90278e2e4fdbd7f5924843f4f7dd5431 assets/reach_for_the_stars/models/item/blank_mold.json
 e6e4c9269fbaa33a4c204b11db4c6e17049f572b assets/reach_for_the_stars/models/item/earth_core.json
@@ -30,3 +30,4 @@ f32b8199ec77482e236ea1823643612a9689b93d assets/reach_for_the_stars/models/item/
 28e9f6d480b9bdbb6cafbe4aaf71f7b0d0ab2817 assets/reach_for_the_stars/models/item/venus_ingot.json
 77402fa43f5c30a31f38850463d6ae82829bf444 assets/reach_for_the_stars/models/item/venus_shard.json
 927183a1cb67a6462a7cf45e49656efec7c8b744 assets/reach_for_the_stars/models/item/water_essence.json
+81eb4a86026203909f7fe93a57a210ccedd15d51 assets/reach_for_the_stars/models/item/winner_planet.json

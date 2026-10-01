@@ -1,7 +1,9 @@
 package org.mob.reach_for_the_stars.block.custom.multiblock;
 
 import net.allthemods.alltheores.blocks.BlockList;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,6 +16,11 @@ public class MultiblockPatterns {
     private static boolean isBlock(BlockState state, String modid, String path) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(modid, path);
         return state.getBlock().equals(ForgeRegistries.BLOCKS.getValue(id));
+    }
+
+    private static boolean isTag(BlockState state, String namespace, String path) {
+        TagKey<Block> tagKey = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(namespace, path));
+        return state.is(tagKey);
     }
 
     private static BlockState getBlockSafe(String modid, String path) {
@@ -98,7 +105,7 @@ public class MultiblockPatterns {
             .where('A', state -> isBlock(state, "immersiveengineering", "sheetmetal_steel"), getBlockSafe("immersiveengineering", "sheetmetal_steel"))
             .where('B', state -> isBlock(state, "immersiveengineering", "steel_scaffolding_standard"), getBlockSafe("immersiveengineering", "steel_scaffolding_standard"))
             .where('D', state -> isBlock(state, "tconstruct", "clear_glass"), getBlockSafe("tconstruct", "clear_glass"))
-            .where('E', state -> state.is(BlockList.STEEL_BLOCK.get()), BlockList.STEEL_BLOCK.get().defaultBlockState())
+            .where('E', state -> isTag(state, "forge", "storage_blocks/steel"), getBlockSafe("thermal","steel_block"))
             .where('G', state -> isBlock(state, "ad_astra", "moon_sand"), getBlockSafe("ad_astra", "moon_sand"))
 
             .where('F', state -> state.is(ModBlocks.ITEM_OUTPUT_HATCH.get()), ModBlocks.ITEM_OUTPUT_HATCH.get().defaultBlockState())
@@ -258,8 +265,8 @@ public class MultiblockPatterns {
                     "BFFFFFFFB",
                     "ABBBCBBBA")
 
-            .where('A', state -> isBlock(state, "ad_astra", "calorite_block"), getBlockSafe("ad_astra", "calorite_block"))
-            .where('B', state -> isBlock(state, "ad_astra", "glowing_calorite_pillar"), getBlockSafe("ad_astra", "glowing_calorite_pillar"))
+            .where('A', state -> isBlock(state, "ad_astra", "ostrum_block"), getBlockSafe("ad_astra", "ostrum_block"))
+            .where('B', state -> isBlock(state, "ad_astra", "glowing_ostrum_pillar"), getBlockSafe("ad_astra", "glowing_ostrum_pillar"))
             .where('D', state -> isBlock(state, "ae2", "quartz_vibrant_glass"), getBlockSafe("ae2", "quartz_vibrant_glass"))
             .where('F', state -> isBlock(state, "ad_astra", "mercury_stone"), getBlockSafe("ad_astra", "mercury_stone"))
 
@@ -565,104 +572,104 @@ public class MultiblockPatterns {
             .build();
 
     public static final MultiblockPattern T4_ROCKET_ASSEMBLER = MultiblockPattern.builder()
-            // Top Layer
+            // Top Layer (dy = 8)
             .layer(
                     "ABBBABBBA",
-                    "BDDDDDDDB",
-                    "BEFEFEFEB",
-                    "BFEFEFEFB",
-                    "ADDDDDDDA",
-                    "BFEFEFEFB",
-                    "BEFEFEFEB",
-                    "BDDDDDDDB",
+                    "BDEFDFEDB",
+                    "BDFEDEDFB",
+                    "BDEFDFEDB",
+                    "ADFEDEFDA",
+                    "BDEFDFEDB",
+                    "BDFEDEDFB",
+                    "BDEFDFEDB",
                     "ABBBABBBA")
-            // Layer 7
+            // Layer 7 (dy = 7)
             .layer(
                     "BDDDDDDDB",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "BDDDDDDDB")
-            // Layer 6
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "BGGGGGGGB")
+            // Layer 6 (dy = 6)
             .layer(
                     "BFEFEFEFB",
-                    "F       G",
-                    "E       G",
-                    "F       G",
-                    "E       G",
-                    "F       G",
-                    "E       G",
-                    "F       G",
-                    "BFEFEFEFB")
-            // Layer 5
+                    "F       F",
+                    "E       E",
+                    "F       F",
+                    "E       E",
+                    "F       F",
+                    "E       E",
+                    "F       F",
+                    "BGGGGGGGB")
+            // Layer 5 (dy = 5)
             .layer(
                     "BEFEFEFEB",
-                    "E       G",
-                    "F       G",
-                    "E  HHH  G",
-                    "F  H H  G",
-                    "E  HHH  G",
-                    "F       G",
-                    "E       G",
-                    "BEFEFEFEB")
-            // Layer 4
+                    "E       E",
+                    "F       F",
+                    "E  HHH  E",
+                    "F  H H  F",
+                    "E  HHH  E",
+                    "F       F",
+                    "E       E",
+                    "BGGGGGGGB")
+            // Layer 4 (dy = 4)
             .layer(
                     "AIIIIIIIA",
-                    "I       G",
-                    "I       G",
-                    "I  H H  G",
-                    "I   J   G",
-                    "I  H H  G",
-                    "I       G",
-                    "I       G",
-                    "AIIIIIIIA")
-            // Layer 3
+                    "I       I",
+                    "I       I",
+                    "I  H H  I",
+                    "I   J   I",
+                    "I  H H  I",
+                    "I       I",
+                    "I       I",
+                    "AGGGGGGGA")
+            // Layer 3 (dy = 3)
             .layer(
                     "BFEFEFEFB",
-                    "F       G",
-                    "E       G",
-                    "F  HHH  G",
-                    "E  H H  G",
-                    "F  HHH  G",
-                    "E       G",
-                    "F       G",
-                    "BFEFEFEFB")
-            // Layer 2
+                    "F       F",
+                    "E       E",
+                    "F  HHH  F",
+                    "E  H H  E",
+                    "F  HHH  F",
+                    "E       E",
+                    "F       F",
+                    "BGGGGGGGB")
+            // Layer 2 (dy = 2)
             .layer(
                     "BEFEFEFEB",
-                    "E       G",
-                    "F       G",
-                    "E       G",
-                    "F       G",
-                    "E       G",
-                    "F       G",
-                    "E       G",
-                    "BEFEFEFEB")
-            // Layer 1
+                    "E       E",
+                    "F       F",
+                    "E       E",
+                    "F       F",
+                    "E       E",
+                    "F       F",
+                    "E       E",
+                    "BGGGGGGGB")
+            // Layer 1 (dy = 1)
             .layer(
                     "BDDDDDDDB",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "D       G",
-                    "BDDDDDDDB")
-            // Bottom Layer
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "D       D",
+                    "BGGGGGGGB")
+            // Bottom Layer (dy = 0)
             .layer(
                     "ABBBKBBBA",
-                    "BDDDDDDDB",
-                    "BEFEFEFEB",
-                    "BFEFEFEFB",
-                    "LDDDDDDDM",
-                    "BFEFEFEFB",
-                    "BEFEFEFEB",
-                    "BDDDDDDDB",
+                    "BDEFDFEDB",
+                    "BDFEDEDFB",
+                    "BDEFDFEDB",
+                    "LDFEDEFDM",
+                    "BDEFDFEDB",
+                    "BDFEDEDFB",
+                    "BDEFDFEDB",
                     "ABBBCBBBA")
 
             .where('A', state -> isBlock(state, "ad_astra", "calorite_block"), getBlockSafe("ad_astra", "calorite_block"))
@@ -675,10 +682,12 @@ public class MultiblockPatterns {
             .where('I', state -> isBlock(state, "chisel", "futura/wavy"), getBlockSafe("chisel", "futura/wavy"))
             .where('J', state -> isBlock(state, "chisel", "futura/mysterious_cube"), getBlockSafe("chisel", "futura/mysterious_cube"))
 
-
-            .where('L', state -> state.is(ModBlocks.ITEM_INPUT_HATCH.get()), ModBlocks.ITEM_INPUT_HATCH.get().defaultBlockState())
+            // Your Custom Hatches & Controller
             .where('M', state -> state.is(ModBlocks.ITEM_OUTPUT_HATCH.get()), ModBlocks.ITEM_OUTPUT_HATCH.get().defaultBlockState())
+            .where('L', state -> state.is(ModBlocks.ITEM_INPUT_HATCH.get()), ModBlocks.ITEM_INPUT_HATCH.get().defaultBlockState())
             .where('K', state -> state.is(ModBlocks.ENERGY_INPUT_HATCH.get()), ModBlocks.ENERGY_INPUT_HATCH.get().defaultBlockState())
+
+            // Air spaces
             .where(' ', state -> state.isAir(), Blocks.AIR.defaultBlockState())
 
             .build();
@@ -687,189 +696,189 @@ public class MultiblockPatterns {
             // Layer 13 (Top, dy = 12)
             .layer(
                     "ABBBBBDBBBBBA",
-                    "BEEEEEEEEEEEB",
-                    "BFFFFFFFFFFFB",
-                    "BEEEEEEEEEEEB",
-                    "BGGGGGGGGGGGB",
-                    "BHHHHHHHHHHHB",
-                    "DFFFFFFFFFFFD",
-                    "BHHHHHHHHHHHB",
-                    "BGGGGGGGGGGGB",
-                    "BEEEEEEEEEEEB",
-                    "BFFFFFFFFFFFB",
-                    "BEEEEEEEEEEEB",
+                    "BEFEGHFHGEFEB",
+                    "BEFEGHFHGEFEB",
+                    "BEFEGHFHGEFEB",
+                    "BEFEGHFHGEFEB",
+                    "BEFEGHFHGEFEB",
+                    "DEFEGHFHGEFED",
+                    "BEFEGHFHGEFEB",
+                    "BEFEGHFHGEFEB",
+                    "BEFEGHFHGEFEB",
+                    "BEFEGHFHGEFEB",
+                    "BEFEGHFHGEFEB",
                     "ABBBBBDBBBBBA")
             // Layers 12 to 8 (dy = 11 to 7)
             .layer(
-                    "IJJJJJJJJJJJI",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "IEFEGHFHGEFEI",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "IJJJJJJJJJJJI")
             .layer(
-                    "IJJJJJJJJJJJI",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "IEFEGHFHGEFEI",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "IJJJJJJJJJJJI")
             .layer(
-                    "IJJJJJJJJJJJI",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "IEFEGHFHGEFEI",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "IJJJJJJJJJJJI")
             .layer(
-                    "IJJJJJJJJJJJI",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "IEFEGHFHGEFEI",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "IJJJJJJJJJJJI")
             .layer(
-                    "IJJJJJJJJJJJI",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "IEFEGHFHGEFEI",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "IJJJJJJJJJJJI")
             // Layer 7 (dy = 6)
             .layer(
-                    "DJJJJJJJJJJJD",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "DEFEGHFHGEFED",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "DJJJJJJJJJJJD")
             // Layers 6 to 2 (dy = 5 to 1)
             .layer(
-                    "KJJJJJJJJJJJK",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "KEFEGHFHGEFEK",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "KJJJJJJJJJJJK")
             .layer(
-                    "KJJJJJJJJJJJK",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "KEFEGHFHGEFEK",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "KJJJJJJJJJJJK")
             .layer(
-                    "KJJJJJJJJJJJK",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "KEFEGHFHGEFEK",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "KJJJJJJJJJJJK")
             .layer(
-                    "KJJJJJJJJJJJK",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "KEFEGHFHGEFEK",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "KJJJJJJJJJJJK")
             .layer(
-                    "KJJJJJJJJJJJK",
-                    "E           J",
-                    "F           J",
-                    "E           J",
-                    "G           J",
-                    "H           J",
-                    "F           J",
-                    "H           J",
-                    "G           J",
-                    "E           J",
-                    "F           J",
-                    "E           J",
+                    "KEFEGHFHGEFEK",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
+                    "J           J",
                     "KJJJJJJJJJJJK")
             // Layer 1 (Bottom, dy = 0)
             .layer(
                     "ALLLLLMLLLLLA",
-                    "LEEEEEEEEEEEL",
-                    "LFFFFFFFFFFFL",
-                    "LEEEEEEEEEEEL",
-                    "LGGGGGGGGGGGL",
-                    "LHHHHHHHHHHHL",
-                    "NFFFFFFFFFFFO",
-                    "LHHHHHHHHHHHL",
-                    "LGGGGGGGGGGGL",
-                    "LEEEEEEEEEEEL",
-                    "LFFFFFFFFFFFL",
-                    "LEEEEEEEEEEEL",
+                    "LEFEGHFHGEFEL",
+                    "LEFEGHFHGEFEL",
+                    "LEFEGHFHGEFEL",
+                    "LEFEGHFHGEFEL",
+                    "LEFEGHFHGEFEL",
+                    "NEFEGHFHGEFEO",
+                    "LEFEGHFHGEFEL",
+                    "LEFEGHFHGEFEL",
+                    "LEFEGHFHGEFEL",
+                    "LEFEGHFHGEFEL",
+                    "LEFEGHFHGEFEL",
                     "ALLLLLCLLLLLA")
 
             .where('A', state -> isBlock(state, "ad_astra", "calorite_block"), getBlockSafe("ad_astra", "calorite_block"))
