@@ -23,7 +23,6 @@ import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;
 public class DeshDrillRecipeCategory implements IRecipeCategory<DeshDrillRecipe> {
 
     public static final ResourceLocation UID = resourceLocation("desh_drill");
-    public static final ResourceLocation TEXTURE = resourceLocation("textures/gui/jei/fluid_to_item_jei.png");
     public static final mezz.jei.api.recipe.RecipeType<DeshDrillRecipe> DESH_DRILL_RECIPE_TYPE =
             new mezz.jei.api.recipe.RecipeType<>(UID, DeshDrillRecipe.class);
 
@@ -32,7 +31,7 @@ public class DeshDrillRecipeCategory implements IRecipeCategory<DeshDrillRecipe>
     private final IDrawable arrow;
 
     public DeshDrillRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0,130, 70);
+        this.background = helper.createBlankDrawable(130, 70);
 
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.DESH_DRILL_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);

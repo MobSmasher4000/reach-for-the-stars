@@ -31,11 +31,16 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCategories(new DeshDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new OstrumDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new CaloriteDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new GlacioDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new T1RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new T2RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new T3RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new T4RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new T5RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new TransmutationConstructorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new Printer3DRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new RitualSiteRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new SkyblockBuilderRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -57,6 +62,9 @@ public class JEIPlugin implements IModPlugin {
         List<CaloriteDrillRecipe> caloriteDrillRecipes = recipeManager.getAllRecipesFor(CaloriteDrillRecipe.Type.INSTANCE);
         registration.addRecipes(CaloriteDrillRecipeCategory.CALORITE_DRILL_RECIPE_TYPE, caloriteDrillRecipes);
 
+        List<GlacioDrillRecipe> glacioDrillRecipes = recipeManager.getAllRecipesFor(GlacioDrillRecipe.Type.INSTANCE);
+        registration.addRecipes(GlacioDrillRecipeCategory.GLACIO_DRILL_RECIPE_TYPE, glacioDrillRecipes);
+
         List<T1RocketAssemblerRecipe> t1RocketAssemblerRecipes = recipeManager.getAllRecipesFor(T1RocketAssemblerRecipe.Type.INSTANCE);
         registration.addRecipes(T1RocketAssemblerRecipeCategory.T1_ROCKET_ASSEMBLER_RECIPE_TYPE, t1RocketAssemblerRecipes);
 
@@ -72,6 +80,18 @@ public class JEIPlugin implements IModPlugin {
         List<T5RocketAssemblerRecipe> t5RocketAssemblerRecipes = recipeManager.getAllRecipesFor(T5RocketAssemblerRecipe.Type.INSTANCE);
         registration.addRecipes(T5RocketAssemblerRecipeCategory.T5_ROCKET_ASSEMBLER_RECIPE_TYPE, t5RocketAssemblerRecipes);
 
+        List<TransmutationConstructorRecipe> transmutationConstructorRecipes = recipeManager.getAllRecipesFor(TransmutationConstructorRecipe.Type.INSTANCE);
+        registration.addRecipes(TransmutationConstructorRecipeCategory.TRANSMUTATION_CONSTRUCTOR_RECIPE_TYPE, transmutationConstructorRecipes);
+
+        List<RitualSiteRecipe> ritualSiteRecipes = recipeManager.getAllRecipesFor(RitualSiteRecipe.Type.INSTANCE);
+        registration.addRecipes(RitualSiteRecipeCategory.RITUAL_SITE_RECIPE_TYPE, ritualSiteRecipes);
+
+        List<Printer3DRecipe> printer3DRecipes = recipeManager.getAllRecipesFor(Printer3DRecipe.Type.INSTANCE);
+        registration.addRecipes(Printer3DRecipeCategory.PRINTER_3D_RECIPE_TYPE, printer3DRecipes);
+
+        List<SkyblockBuilderRecipe> skyblockBuilderRecipes = recipeManager.getAllRecipesFor(SkyblockBuilderRecipe.Type.INSTANCE);
+        registration.addRecipes(SkyblockBuilderRecipeCategory.SKYBLOCK_BUILDER_RECIPE_TYPE, skyblockBuilderRecipes);
+
     }
 
     @Override
@@ -81,10 +101,15 @@ public class JEIPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.DESH_DRILL_CONTROLLER.get()), DeshDrillRecipeCategory.DESH_DRILL_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.OSTRUM_DRILL_CONTROLLER.get()), OstrumDrillRecipeCategory.OSTRUM_DRILL_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.CALORITE_DRILL_CONTROLLER.get()), CaloriteDrillRecipeCategory.CALORITE_DRILL_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.GLACIO_DRILL_CONTROLLER.get()), GlacioDrillRecipeCategory.GLACIO_DRILL_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.T1_ROCKET_ASSEMBLER_CONTROLLER.get()), T1RocketAssemblerRecipeCategory.T1_ROCKET_ASSEMBLER_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.T2_ROCKET_ASSEMBLER_CONTROLLER.get()), T2RocketAssemblerRecipeCategory.T2_ROCKET_ASSEMBLER_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.T3_ROCKET_ASSEMBLER_CONTROLLER.get()), T3RocketAssemblerRecipeCategory.T3_ROCKET_ASSEMBLER_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.T4_ROCKET_ASSEMBLER_CONTROLLER.get()), T4RocketAssemblerRecipeCategory.T4_ROCKET_ASSEMBLER_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.T5_ROCKET_ASSEMBLER_CONTROLLER.get()), T5RocketAssemblerRecipeCategory.T5_ROCKET_ASSEMBLER_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.TRANSMUTATION_CONSTRUCTOR_CONTROLLER.get()), TransmutationConstructorRecipeCategory.TRANSMUTATION_CONSTRUCTOR_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get()), SkyblockBuilderRecipeCategory.SKYBLOCK_BUILDER_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.RITUAL_SITE_CONTROLLER.get()), RitualSiteRecipeCategory.RITUAL_SITE_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.PRINTER_3D_CONTROLLER.get()), Printer3DRecipeCategory.PRINTER_3D_RECIPE_TYPE);
     }
 }

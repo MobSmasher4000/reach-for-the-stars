@@ -49,6 +49,15 @@ public class FluidInputHatchBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof FluidInputHatchBlockEntity hatch) {
+
+                boolean didFluidInteraction = net.minecraftforge.fluids.FluidUtil.interactWithFluidHandler(
+                        pPlayer, pHand, hatch.getInternalTank()
+                );
+
+                if (didFluidInteraction) {
+                    return InteractionResult.SUCCESS;
+                }
+
                 NetworkHooks.openScreen(((ServerPlayer)pPlayer), hatch, pPos);
             }
         }

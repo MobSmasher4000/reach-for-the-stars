@@ -28,7 +28,7 @@ import org.mob.reach_for_the_stars.screen.menu.ItemInputHatchMenu;
 
 public class ItemInputHatchBlockEntity extends BlockEntity implements MenuProvider {
 
-    private final ItemStackHandler itemHandler = new ItemStackHandler(9) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(54) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();

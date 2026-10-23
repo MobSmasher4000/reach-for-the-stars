@@ -22,7 +22,6 @@ import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;
 public class FuelDistilleryRecipeCategory implements IRecipeCategory<FuelDistilleryRecipe> {
     
     public static final ResourceLocation UID = resourceLocation("fuel_distillery_controller");
-    public static final ResourceLocation TEXTURE = resourceLocation("textures/gui/jei/fluid_to_fluid_jei.png");
 
     public static final mezz.jei.api.recipe.RecipeType<FuelDistilleryRecipe> FUEL_DISTILLERY_RECIPE_TYPE =
             new mezz.jei.api.recipe.RecipeType<>(UID, FuelDistilleryRecipe.class);
@@ -32,7 +31,7 @@ public class FuelDistilleryRecipeCategory implements IRecipeCategory<FuelDistill
     private final IDrawable arrow;
 
     public FuelDistilleryRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0,130, 70);
+        this.background = helper.createBlankDrawable(130, 70);
 
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.FUEL_DISTILLERY_CONTROLLER.get()));
 

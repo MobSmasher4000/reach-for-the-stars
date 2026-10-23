@@ -24,7 +24,6 @@ import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;
 public class SteelDrillRecipeCategory implements IRecipeCategory<SteelDrillRecipe> {
 
     public static final ResourceLocation UID = resourceLocation("steel_drill");
-    public static final ResourceLocation TEXTURE = resourceLocation("textures/gui/jei/fluid_to_item_jei.png");
     public static final mezz.jei.api.recipe.RecipeType<SteelDrillRecipe> STEEL_DRILL_RECIPE_TYPE =
             new mezz.jei.api.recipe.RecipeType<>(UID, SteelDrillRecipe.class);
 
@@ -33,7 +32,7 @@ public class SteelDrillRecipeCategory implements IRecipeCategory<SteelDrillRecip
     private final IDrawable arrow;
 
     public SteelDrillRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0,130, 70);
+        this.background = helper.createBlankDrawable(130, 70);
 
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.STEEL_DRILL_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);

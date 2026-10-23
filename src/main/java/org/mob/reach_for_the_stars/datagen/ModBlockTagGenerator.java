@@ -29,11 +29,16 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.DESH_DRILL_CONTROLLER.get())
                 .add(ModBlocks.OSTRUM_DRILL_CONTROLLER.get())
                 .add(ModBlocks.CALORITE_DRILL_CONTROLLER.get())
+                .add(ModBlocks.GLACIO_DRILL_CONTROLLER.get())
                 .add(ModBlocks.T1_ROCKET_ASSEMBLER_CONTROLLER.get())
                 .add(ModBlocks.T2_ROCKET_ASSEMBLER_CONTROLLER.get())
                 .add(ModBlocks.T3_ROCKET_ASSEMBLER_CONTROLLER.get())
                 .add(ModBlocks.T4_ROCKET_ASSEMBLER_CONTROLLER.get())
                 .add(ModBlocks.T5_ROCKET_ASSEMBLER_CONTROLLER.get())
+                .add(ModBlocks.TRANSMUTATION_CONSTRUCTOR_CONTROLLER.get())
+                .add(ModBlocks.RITUAL_SITE_CONTROLLER.get())
+                .add(ModBlocks.PRINTER_3D_CONTROLLER.get())
+                .add(ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get())
         ;
     }
 }

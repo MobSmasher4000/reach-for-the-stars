@@ -30,11 +30,16 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModBlocks.DESH_DRILL_CONTROLLER.get());
                         pOutput.accept(ModBlocks.OSTRUM_DRILL_CONTROLLER.get());
                         pOutput.accept(ModBlocks.CALORITE_DRILL_CONTROLLER.get());
+                        pOutput.accept(ModBlocks.GLACIO_DRILL_CONTROLLER.get());
                         pOutput.accept(ModBlocks.T1_ROCKET_ASSEMBLER_CONTROLLER.get());
                         pOutput.accept(ModBlocks.T2_ROCKET_ASSEMBLER_CONTROLLER.get());
                         pOutput.accept(ModBlocks.T3_ROCKET_ASSEMBLER_CONTROLLER.get());
                         pOutput.accept(ModBlocks.T4_ROCKET_ASSEMBLER_CONTROLLER.get());
                         pOutput.accept(ModBlocks.T5_ROCKET_ASSEMBLER_CONTROLLER.get());
+                        pOutput.accept(ModBlocks.PRINTER_3D_CONTROLLER.get());
+                        pOutput.accept(ModBlocks.TRANSMUTATION_CONSTRUCTOR_CONTROLLER.get());
+                        pOutput.accept(ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get());
+                        pOutput.accept(ModBlocks.RITUAL_SITE_CONTROLLER.get());
 
 
                         pOutput.accept(ModItems.RFTS.get());
@@ -77,6 +82,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.DESH_DRILL_FLUID_BUCKET.get());
                         pOutput.accept(ModItems.OSTRUM_DRILL_FLUID_BUCKET.get());
                         pOutput.accept(ModItems.CALORITE_DRILL_FLUID_BUCKET.get());
+                        pOutput.accept(ModItems.GLACIO_DRILL_FLUID_BUCKET.get());
 
                     })
                     .build());

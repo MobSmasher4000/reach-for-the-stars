@@ -35,10 +35,11 @@ public class ItemInputHatchMenu extends AbstractContainerMenu {
     }
 
     private void addHatchSlots(IItemHandler itemHandler) {
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                int index = j + i * 3;
-                this.addSlot(new SlotItemHandler(itemHandler, index, 63 + j * 18, 18 + i * 18));
+        for (int row = 0; row < 6; ++row) { // 6 rows
+            for (int col = 0; col < 9; ++col) { // 9 columns (slots per row)
+                int index = col + row * 9;
+
+                this.addSlot(new SlotItemHandler(itemHandler, index, 8 + col * 18, 18 + row * 18));
             }
         }
     }
@@ -102,14 +103,14 @@ public class ItemInputHatchMenu extends AbstractContainerMenu {
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 140 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 198));
         }
     }
 }

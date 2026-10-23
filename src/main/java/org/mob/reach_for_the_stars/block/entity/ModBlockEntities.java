@@ -64,6 +64,12 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(CaloriteDrillControllerBlockEntity::new,
                             ModBlocks.CALORITE_DRILL_CONTROLLER.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<GlacioDrillControllerBlockEntity>> GLACIO_DRILL_CONTROLLER_BE =
+            BLOCK_ENTITIES.register("glacio_drill_controller_be", () ->
+                    BlockEntityType.Builder.of(GlacioDrillControllerBlockEntity::new,
+                            ModBlocks.GLACIO_DRILL_CONTROLLER.get()).build(null));
+
+
     // Rocket assemblers
     public static final RegistryObject<BlockEntityType<T1RocketAssemblerControllerBlockEntity>> T1_ROCKET_ASSEMBLER_CONTROLLER_BE =
             BLOCK_ENTITIES.register("t1_rocket_assembler_controller_be", () ->
@@ -89,6 +95,28 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("t5_rocket_assembler_controller_be", () ->
                     BlockEntityType.Builder.of(T5RocketAssemblerControllerBlockEntity::new,
                             ModBlocks.T5_ROCKET_ASSEMBLER_CONTROLLER.get()).build(null));
+
+    // Special multi
+    public static final RegistryObject<BlockEntityType<Printer3DControllerBlockEntity>> PRINTER_3D_CONTROLLER_BE =
+            BLOCK_ENTITIES.register("printer_3d_controller_be", () ->
+                    BlockEntityType.Builder.of(Printer3DControllerBlockEntity::new,
+                            ModBlocks.PRINTER_3D_CONTROLLER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<TransmutationConstructorControllerBlockEntity>> TRANSMUTATION_CONSTRUCTOR_CONTROLLER_BE =
+            BLOCK_ENTITIES.register("transmutation_constructor_controller_be", () ->
+                    BlockEntityType.Builder.of(TransmutationConstructorControllerBlockEntity::new,
+                            ModBlocks.TRANSMUTATION_CONSTRUCTOR_CONTROLLER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<SkyblockBuilderControllerBlockEntity>> SKYBLOCK_BUILDER_CONTROLLER_BE =
+            BLOCK_ENTITIES.register("skyblock_builder_controller_be", () ->
+                    BlockEntityType.Builder.of(SkyblockBuilderControllerBlockEntity::new,
+                            ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<RitualSiteControllerBlockEntity>> RITUAL_SITE_CONTROLLER_BE =
+            BLOCK_ENTITIES.register("ritual_site_controller_be", () ->
+                    BlockEntityType.Builder.of(RitualSiteControllerBlockEntity::new,
+                            ModBlocks.RITUAL_SITE_CONTROLLER.get()).build(null));
+
 
 
     public static void register(IEventBus eventBus) {

@@ -23,7 +23,6 @@ import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;
 public class CaloriteDrillRecipeCategory implements IRecipeCategory<CaloriteDrillRecipe> {
 
     public static final ResourceLocation UID = resourceLocation("calorite_drill");
-    public static final ResourceLocation TEXTURE = resourceLocation("textures/gui/jei/fluid_to_item_jei.png");
     public static final mezz.jei.api.recipe.RecipeType<CaloriteDrillRecipe> CALORITE_DRILL_RECIPE_TYPE =
             new mezz.jei.api.recipe.RecipeType<>(UID, CaloriteDrillRecipe.class);
 
@@ -32,7 +31,7 @@ public class CaloriteDrillRecipeCategory implements IRecipeCategory<CaloriteDril
     private final IDrawable arrow;
 
     public CaloriteDrillRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0,130, 70);
+        this.background = helper.createBlankDrawable(130, 70);
 
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.CALORITE_DRILL_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);

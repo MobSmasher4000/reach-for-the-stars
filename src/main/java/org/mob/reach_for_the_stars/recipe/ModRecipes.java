@@ -26,6 +26,9 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<CaloriteDrillRecipe>> CALORITE_DRILL_SERIALIZER =
             SERIALIZERS.register("calorite_drill", () -> CaloriteDrillRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<GlacioDrillRecipe>> GLACIO_DRILL_SERIALIZER =
+            SERIALIZERS.register("glacio_drill", () -> GlacioDrillRecipe.Serializer.INSTANCE);
+
     public static final RegistryObject<RecipeSerializer<T1RocketAssemblerRecipe>> T1_ROCKET_ASSEMBLER_SERIALIZER =
             SERIALIZERS.register("t1_rocket_assembler", () -> T1RocketAssemblerRecipe.Serializer.INSTANCE);
 
@@ -40,6 +43,18 @@ public class ModRecipes {
 
     public static final RegistryObject<RecipeSerializer<T5RocketAssemblerRecipe>> T5_ROCKET_ASSEMBLER_SERIALIZER =
             SERIALIZERS.register("t5_rocket_assembler", () -> T5RocketAssemblerRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<Printer3DRecipe>> PRINTER_3D_SERIALIZER =
+            SERIALIZERS.register("printer_3d", () -> Printer3DRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<TransmutationConstructorRecipe>> TRANSMUTATION_CONSTRUCTOR_SERIALIZER =
+            SERIALIZERS.register("transmutation_constructor", () -> TransmutationConstructorRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<SkyblockBuilderRecipe>> SKYBLOCK_BUILDER_SERIALIZER =
+            SERIALIZERS.register("skyblock_builder", () -> SkyblockBuilderRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<RitualSiteRecipe>> RITUAL_SITE_SERIALIZER =
+            SERIALIZERS.register("ritual_site", () -> RitualSiteRecipe.Serializer.INSTANCE);
 
 
     public static void register(IEventBus eventBus) {

@@ -49,6 +49,15 @@ public class FluidOutputHatchBlock extends BaseEntityBlock {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof FluidOutputHatchBlockEntity hatch) {
+
+                boolean didFluidInteraction = net.minecraftforge.fluids.FluidUtil.interactWithFluidHandler(
+                        pPlayer, pHand, pLevel, pPos, pHit.getDirection()
+                );
+
+                if (didFluidInteraction) {
+                    return InteractionResult.SUCCESS;
+                }
+
                 NetworkHooks.openScreen(((ServerPlayer)pPlayer), hatch, pPos);
             }
         }

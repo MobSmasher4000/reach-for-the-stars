@@ -1,0 +1,275 @@
+package org.mob.reach_for_the_stars.block.entity.multiblock;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.ItemStackHandler;
+import org.mob.reach_for_the_stars.block.custom.multiblock.MultiblockPatterns;
+import org.mob.reach_for_the_stars.block.custom.multiblock.RitualSiteControllerBlock;
+import org.mob.reach_for_the_stars.block.entity.ModBlockEntities;
+import org.mob.reach_for_the_stars.block.entity.hatch.ItemInputHatchBlockEntity;
+import org.mob.reach_for_the_stars.block.entity.hatch.ItemOutputHatchBlockEntity;
+import org.mob.reach_for_the_stars.recipe.RitualSiteRecipe;
+import org.mob.reach_for_the_stars.screen.menu.RitualSiteControllerMenu;
+import org.mob.reach_for_the_stars.util.MultiblockPattern;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+public class RitualSiteControllerBlockEntity extends BlockEntity implements MenuProvider {
+
+    private int checkStructureTimer = 0;
+    public boolean showPreview = false;
+
+    private int progress = 0;
+    private int MAX_PROGRESS = 12000; // 10 min
+
+    // Cached Hatch Locations
+    private final List<BlockPos> itemInputHatches = new ArrayList<>();
+    private final List<BlockPos> itemOutputHatches = new ArrayList<>();
+
+    public RitualSiteControllerBlockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntities.RITUAL_SITE_CONTROLLER_BE.get(), pPos, pBlockState);
+    }
+
+    protected final ContainerData data = new ContainerData() {
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case 0 -> RitualSiteControllerBlockEntity.this.progress;
+                case 1 -> RitualSiteControllerBlockEntity.this.MAX_PROGRESS;
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {
+            switch (index) {
+                case 0 -> RitualSiteControllerBlockEntity.this.progress = value;
+                case 1 -> RitualSiteControllerBlockEntity.this.MAX_PROGRESS = value;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+    };
+
+    public static void tick(Level level, BlockPos pos, BlockState state, RitualSiteControllerBlockEntity be) {
+        if (level.isClientSide()) return;
+
+        if (be.checkStructureTimer-- <= 0) {
+            be.checkStructureTimer = 20;
+            be.updateStructure(level, pos, state);
+        }
+
+        if (state.getValue(RitualSiteControllerBlock.FORMED)) {
+            be.processRecipe(level);
+        }
+    }
+
+    private void updateStructure(Level level, BlockPos pos, BlockState state) {
+        MultiblockPattern.MatchResult result = MultiblockPatterns.RITUAL_SITE.check(
+                level, pos, state.getValue(RitualSiteControllerBlock.FACING)
+        );
+
+        boolean wasFormed = state.getValue(RitualSiteControllerBlock.FORMED);
+
+        if (result.isFormed()) {
+            if (!wasFormed) {
+                level.setBlock(pos, state.setValue(RitualSiteControllerBlock.FORMED, true), 3);
+            }
+
+            if (this.itemInputHatches.isEmpty() || this.itemOutputHatches.isEmpty()) {
+                linkHatches(level, pos, result);
+            }
+
+        } else {
+            if (wasFormed) {
+                level.setBlock(pos, state.setValue(RitualSiteControllerBlock.FORMED, false), 3);
+                unlinkHatches(level);
+                this.progress = 0;
+                setChanged();
+            }
+        }
+    }
+
+    private void linkHatches(Level level, BlockPos controllerPos, MultiblockPattern.MatchResult result) {
+        unlinkHatches(level);
+
+        // 'M' is Item Input Hatch
+        for (BlockPos targetPos : result.getPositions('M')) {
+            if (level.getBlockEntity(targetPos) instanceof ItemInputHatchBlockEntity hatch) {
+                hatch.setControllerPos(controllerPos);
+                this.itemInputHatches.add(targetPos);
+            }
+        }
+
+        // 'L' is Item Output Hatch
+        for (BlockPos targetPos : result.getPositions('L')) {
+            if (level.getBlockEntity(targetPos) instanceof ItemOutputHatchBlockEntity hatch) {
+                hatch.setControllerPos(controllerPos);
+                this.itemOutputHatches.add(targetPos);
+            }
+        }
+    }
+
+    private void unlinkHatches(Level level) {
+        for (BlockPos targetPos : itemInputHatches) {
+            if (level.getBlockEntity(targetPos) instanceof ItemInputHatchBlockEntity hatch) hatch.setControllerPos(null);
+        }
+        for (BlockPos targetPos : itemOutputHatches) {
+            if (level.getBlockEntity(targetPos) instanceof ItemOutputHatchBlockEntity hatch) hatch.setControllerPos(null);
+        }
+
+        this.itemInputHatches.clear();
+        this.itemOutputHatches.clear();
+    }
+
+    private Optional<RitualSiteRecipe> getRecipe(SimpleContainer container, Level level) {
+        if (container.isEmpty()) return Optional.empty();
+
+        return level.getRecipeManager().getRecipeFor(RitualSiteRecipe.Type.INSTANCE, container, level);
+    }
+
+    private void processRecipe(Level level) {
+        if (itemInputHatches.isEmpty() || itemOutputHatches.isEmpty()) return;
+
+        ItemInputHatchBlockEntity inputBe = (ItemInputHatchBlockEntity) level.getBlockEntity(itemInputHatches.get(0));
+        ItemOutputHatchBlockEntity itemOutBE = (ItemOutputHatchBlockEntity) level.getBlockEntity(itemOutputHatches.get(0));
+
+        if (inputBe == null || itemOutBE == null) return;
+
+        ItemStackHandler inventory = itemOutBE.getInternalInventory();
+
+        IItemHandler inputItemHandler = inputBe.getInternalInventory();
+        if (inputItemHandler == null) return;
+
+        SimpleContainer container = new SimpleContainer(inputItemHandler.getSlots());
+        for (int i = 0; i < inputItemHandler.getSlots(); i++) {
+            container.setItem(i, inputItemHandler.getStackInSlot(i));
+        }
+
+        Optional<RitualSiteRecipe> match = getRecipe(container, level);
+
+        if (match.isEmpty()) {
+            this.progress = 0;
+            return;
+        }
+
+        RitualSiteRecipe recipe = match.get();
+        ItemStack outputResult = recipe.getResultItem(level.registryAccess());
+
+        itemOutBE.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
+
+            ItemStack remaining = ItemHandlerHelper.insertItem(inventory, outputResult, true);
+            if (!remaining.isEmpty()) return;
+
+            this.progress++;
+            if (this.progress >= MAX_PROGRESS) {
+                // Consume ingredients out of the input hatch utilizing the recipe's requirements
+                consumeRecipeIngredients(recipe, inputItemHandler);
+
+                ItemHandlerHelper.insertItem(inventory, outputResult.copy(), false);
+
+                this.progress = 0;
+                setChanged();
+            }
+        });
+    }
+
+    private void consumeRecipeIngredients(RitualSiteRecipe recipe, IItemHandler inputHandler) {
+        List<Ingredient> ingredients = recipe.getIngredientsList();
+        List<Integer> counts = recipe.getInputCounts();
+
+        for (int i = 0; i < ingredients.size(); i++) {
+            Ingredient ingredient = ingredients.get(i);
+            int requiredCount = counts.get(i);
+
+            for (int slot = 0; slot < inputHandler.getSlots(); slot++) {
+                if (requiredCount <= 0) break;
+
+                ItemStack stack = inputHandler.getStackInSlot(slot);
+                if (!stack.isEmpty() && ingredient.test(stack)) {
+                    int extractAmount = Math.min(stack.getCount(), requiredCount);
+                    inputHandler.extractItem(slot, extractAmount, false);
+                    requiredCount -= extractAmount;
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag pTag) {
+        super.saveAdditional(pTag);
+        pTag.putInt("Progress", this.progress);
+        pTag.putBoolean("ShowPreview", this.showPreview);
+    }
+
+    @Override
+    public void load(CompoundTag pTag) {
+        super.load(pTag);
+        this.progress = pTag.getInt("Progress");
+        this.showPreview = pTag.getBoolean("ShowPreview");
+    }
+
+    public boolean isShowPreview() { return this.showPreview; }
+
+    public void togglePreview() {
+        this.showPreview = !this.showPreview;
+        this.setChanged();
+        if (level != null && !level.isClientSide()) {
+            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+        }
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable("block.reach_for_the_stars.ritual_site_controller");
+    }
+
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
+        return new RitualSiteControllerMenu(pContainerId, pPlayerInventory, this, this.data);
+    }
+
+    @Nullable
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        CompoundTag tag = new CompoundTag();
+        saveAdditional(tag);
+        return tag;
+    }
+
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+        if (pkt.getTag() != null) {
+            load(pkt.getTag());
+        }
+    }
+}

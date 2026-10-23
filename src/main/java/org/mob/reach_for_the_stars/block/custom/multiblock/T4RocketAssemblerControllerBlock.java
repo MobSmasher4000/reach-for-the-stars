@@ -103,14 +103,6 @@ public class T4RocketAssemblerControllerBlock extends BaseEntityBlock {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
         pTooltip.add(Component.translatable("tooltip.reach_for_the_stars.auto_build"));
-        if (!Screen.hasShiftDown()) {
-            pTooltip.add(Component.translatable("tooltip.reach_for_the_stars.auto_build_list_info"));
-        }else {
-            for (int i = 1; i <13 ; i++) {
-                String tooltip = "tooltip.reach_for_the_stars.t4_rocket_assembler_" + i;
-                pTooltip.add(Component.translatable(tooltip));
-            }
-        }
         super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
     }
 }

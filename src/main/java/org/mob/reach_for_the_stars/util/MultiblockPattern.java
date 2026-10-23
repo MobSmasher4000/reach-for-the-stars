@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
@@ -97,11 +98,28 @@ public class MultiblockPattern {
         }
     }
 
-    public void placeStructure(Level level, BlockPos controllerPos, Direction facing, Player player) {
+    public void placeStructure(Level level, BlockPos originalControllerPos, Direction facing, Player player) {
+        // Calculate how many layers are below the controller
+        int downwardOffset = getDownwardOffset();
+
+        // Calculate the new, elevated position for the controller
+        BlockPos actualControllerPos = originalControllerPos.above(downwardOffset);
+
+        // Move the controller UP if there are layers below it
+        if (downwardOffset > 0) {
+            BlockState controllerState = level.getBlockState(originalControllerPos);
+            // Remove the old block silently without dropping an item
+            level.setBlock(originalControllerPos, Blocks.AIR.defaultBlockState(), 3);
+            // Place it at the elevated height
+            level.setBlockAndUpdate(actualControllerPos, controllerState);
+        }
+
+        // Generate the structure offsets
         Map<BlockPos, BlockState> blocksToPlace = getPreviewOffsets(facing);
 
+        // Build the structure around the elevated controller position
         for (Map.Entry<BlockPos, BlockState> entry : blocksToPlace.entrySet()) {
-            BlockPos targetPos = controllerPos.offset(entry.getKey());
+            BlockPos targetPos = actualControllerPos.offset(entry.getKey());
             BlockState stateToPlace = entry.getValue();
 
             // Skip if the block is already correct (saves items and prevents overriding)
@@ -110,10 +128,10 @@ public class MultiblockPattern {
             }
 
             if (player.isCreative()) {
-                // Creative mode
+                // Creative mode placement
                 level.setBlockAndUpdate(targetPos, stateToPlace);
             } else {
-                // Survival mode: Check for the item in the inventory
+                // Survival mode placement
                 ItemStack requiredItem = new ItemStack(stateToPlace.getBlock().asItem());
                 if (requiredItem.isEmpty()) continue; // Block has no item form, skip
 
@@ -138,6 +156,12 @@ public class MultiblockPattern {
             }
         }
         return false;
+    }
+
+    // Returns how many layers exist below the controller in the pattern.
+    public int getDownwardOffset() {
+        if (centerLayer == -1) return 0;
+        return (layers.size() - 1) - centerLayer;
     }
 
     // Preview

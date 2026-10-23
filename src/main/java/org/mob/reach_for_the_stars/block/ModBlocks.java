@@ -56,6 +56,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> CALORITE_DRILL_CONTROLLER = registerBlock("calorite_drill_controller",
             () -> new CaloriteDrillControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
+    public static final RegistryObject<Block> GLACIO_DRILL_CONTROLLER = registerBlock("glacio_drill_controller",
+            () -> new GlacioDrillControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
     // Rocket Assemblers
     public static final RegistryObject<Block> T1_ROCKET_ASSEMBLER_CONTROLLER = registerBlock("t1_rocket_assembler_controller",
             () -> new T1RocketAssemblerControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
@@ -85,6 +88,22 @@ public class ModBlocks {
 
     public static final RegistryObject<LiquidBlock> CALORITE_DRILL_FLUID_BLOCK = BLOCKS.register("calorite_drill_fluid",
             () -> new LiquidBlock(ModFluids.SOURCE_CALORITE_DRILL_FLUID, BlockBehaviour.Properties.copy(Blocks.LAVA).noLootTable()));
+
+    public static final RegistryObject<LiquidBlock> GLACIO_DRILL_FLUID_BLOCK = BLOCKS.register("glacio_drill_fluid",
+            () -> new LiquidBlock(ModFluids.SOURCE_GLACIO_DRILL_FLUID, BlockBehaviour.Properties.copy(Blocks.LAVA).noLootTable()));
+
+    // Special Multis
+    public static final RegistryObject<Block> PRINTER_3D_CONTROLLER = registerBlock("printer_3d_controller",
+            () -> new Printer3DControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> TRANSMUTATION_CONSTRUCTOR_CONTROLLER = registerBlock("transmutation_constructor_controller",
+            () -> new TransmutationConstructorControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> SKYBLOCK_BUILDER_CONTROLLER = registerBlock("skyblock_builder_controller",
+            () -> new SkyblockBuilderControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> RITUAL_SITE_CONTROLLER = registerBlock("ritual_site_controller",
+            () -> new RitualSiteControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

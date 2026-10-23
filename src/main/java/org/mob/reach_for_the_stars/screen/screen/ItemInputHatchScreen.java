@@ -15,12 +15,12 @@ import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;
 public class ItemInputHatchScreen extends AbstractContainerScreen<ItemInputHatchMenu> {
 
     private static final ResourceLocation TEXTURE =
-            resourceLocation("textures/gui/hatch/item_output_hatch_gui.png");
+            resourceLocation("textures/gui/hatch/item_input_hatch_gui.png");
 
     public ItemInputHatchScreen(ItemInputHatchMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
-        this.imageWidth = 176;
-        this.imageHeight = 166;
+        this.imageWidth = 175;
+        this.imageHeight = 221;
     }
 
     @Override

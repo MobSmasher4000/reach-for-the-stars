@@ -23,7 +23,6 @@ import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;
 public class OstrumDrillRecipeCategory implements IRecipeCategory<OstrumDrillRecipe> {
 
     public static final ResourceLocation UID = resourceLocation("ostrum_drill");
-    public static final ResourceLocation TEXTURE = resourceLocation("textures/gui/jei/fluid_to_item_jei.png");
     public static final mezz.jei.api.recipe.RecipeType<OstrumDrillRecipe> OSTRUM_DRILL_RECIPE_TYPE =
             new mezz.jei.api.recipe.RecipeType<>(UID, OstrumDrillRecipe.class);
 
@@ -32,7 +31,7 @@ public class OstrumDrillRecipeCategory implements IRecipeCategory<OstrumDrillRec
     private final IDrawable arrow;
 
     public OstrumDrillRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0,130, 70);
+        this.background = helper.createBlankDrawable(130, 70);
 
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.OSTRUM_DRILL_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);

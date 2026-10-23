@@ -133,6 +133,10 @@ public class ModItems {
     public static final RegistryObject<Item> CALORITE_DRILL_FLUID_BUCKET = ITEMS.register("calorite_drill_fluid_bucket",
             () -> new BucketItem(ModFluids.SOURCE_CALORITE_DRILL_FLUID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
+    public static final RegistryObject<Item> GLACIO_DRILL_FLUID_BUCKET = ITEMS.register("glacio_drill_fluid_bucket",
+            () -> new BucketItem(ModFluids.SOURCE_GLACIO_DRILL_FLUID, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+
+
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

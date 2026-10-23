@@ -84,6 +84,22 @@ public class ModFluids {
             CALORITE_DRILL_FLUID_TYPE, SOURCE_CALORITE_DRILL_FLUID, FLOWING_CALORITE_DRILL_FLUID)
             .block(ModBlocks.CALORITE_DRILL_FLUID_BLOCK).bucket(ModItems.CALORITE_DRILL_FLUID_BUCKET);
 
+//    Glacio Drill Fluid
+    public static final RegistryObject<FluidType> GLACIO_DRILL_FLUID_TYPE = FLUID_TYPES.register("glacio_drill_fluid",
+        () -> new BaseFluidType(FluidType.Properties.create()
+                .density(3000).viscosity(6000),
+                0xFF800080, THICK_STILL, THICK_FLOW));
+
+    public static final RegistryObject<FlowingFluid> SOURCE_GLACIO_DRILL_FLUID = FLUIDS.register("glacio_drill_fluid",
+            () -> new ForgeFlowingFluid.Source(ModFluids.GLACIO_DRILL_PROPERTIES));
+
+    public static final RegistryObject<FlowingFluid> FLOWING_GLACIO_DRILL_FLUID = FLUIDS.register("flowing_glacio_drill_fluid",
+            () -> new ForgeFlowingFluid.Flowing(ModFluids.GLACIO_DRILL_PROPERTIES));
+
+    public static final ForgeFlowingFluid.Properties GLACIO_DRILL_PROPERTIES = new ForgeFlowingFluid.Properties(
+            GLACIO_DRILL_FLUID_TYPE, SOURCE_GLACIO_DRILL_FLUID, FLOWING_GLACIO_DRILL_FLUID)
+            .block(ModBlocks.GLACIO_DRILL_FLUID_BLOCK).bucket(ModItems.GLACIO_DRILL_FLUID_BUCKET);
+
     public static void register(IEventBus eventBus) {
         FLUID_TYPES.register(eventBus);
         FLUIDS.register(eventBus);

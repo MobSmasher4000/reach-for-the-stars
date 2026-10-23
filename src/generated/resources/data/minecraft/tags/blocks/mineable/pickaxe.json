@@ -10,10 +10,15 @@
     "reach_for_the_stars:desh_drill_controller",
     "reach_for_the_stars:ostrum_drill_controller",
     "reach_for_the_stars:calorite_drill_controller",
+    "reach_for_the_stars:glacio_drill_controller",
     "reach_for_the_stars:t1_rocket_assembler_controller",
     "reach_for_the_stars:t2_rocket_assembler_controller",
     "reach_for_the_stars:t3_rocket_assembler_controller",
     "reach_for_the_stars:t4_rocket_assembler_controller",
-    "reach_for_the_stars:t5_rocket_assembler_controller"
+    "reach_for_the_stars:t5_rocket_assembler_controller",
+    "reach_for_the_stars:transmutation_constructor_controller",
+    "reach_for_the_stars:ritual_site_controller",
+    "reach_for_the_stars:printer_3d_controller",
+    "reach_for_the_stars:skyblock_builder_controller"
   ]
 }

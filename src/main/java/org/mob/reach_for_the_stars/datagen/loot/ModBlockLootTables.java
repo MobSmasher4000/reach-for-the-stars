@@ -25,11 +25,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.DESH_DRILL_CONTROLLER.get());
         dropSelf(ModBlocks.OSTRUM_DRILL_CONTROLLER.get());
         dropSelf(ModBlocks.CALORITE_DRILL_CONTROLLER.get());
+        dropSelf(ModBlocks.GLACIO_DRILL_CONTROLLER.get());
         dropSelf(ModBlocks.T1_ROCKET_ASSEMBLER_CONTROLLER.get());
         dropSelf(ModBlocks.T2_ROCKET_ASSEMBLER_CONTROLLER.get());
         dropSelf(ModBlocks.T3_ROCKET_ASSEMBLER_CONTROLLER.get());
         dropSelf(ModBlocks.T4_ROCKET_ASSEMBLER_CONTROLLER.get());
         dropSelf(ModBlocks.T5_ROCKET_ASSEMBLER_CONTROLLER.get());
+        dropSelf(ModBlocks.PRINTER_3D_CONTROLLER.get());
+        dropSelf(ModBlocks.TRANSMUTATION_CONSTRUCTOR_CONTROLLER.get());
+        dropSelf(ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get());
+        dropSelf(ModBlocks.RITUAL_SITE_CONTROLLER.get());
     }
 
     @Override

@@ -23,7 +23,6 @@ import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;
 
 public class T2RocketAssemblerRecipeCategory implements IRecipeCategory<T2RocketAssemblerRecipe> {
     public static final ResourceLocation UID = resourceLocation("t2_rocket_assembler");
-    public static final ResourceLocation TEXTURE = resourceLocation("textures/gui/jei/item_to_item_jei.png");
 
     public static final RecipeType<T2RocketAssemblerRecipe> T2_ROCKET_ASSEMBLER_RECIPE_TYPE =
             new RecipeType<>(UID, T2RocketAssemblerRecipe.class);
@@ -33,7 +32,7 @@ public class T2RocketAssemblerRecipeCategory implements IRecipeCategory<T2Rocket
     private final IDrawable arrow;
 
     public T2RocketAssemblerRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 151, 66);
+        this.background = helper.createBlankDrawable(151, 66);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.T2_ROCKET_ASSEMBLER_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);
     }

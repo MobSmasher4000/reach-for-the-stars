@@ -44,6 +44,10 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<CaloriteDrillControllerMenu>> CALORITE_DRILL_MENU =
             registerMenuType("calorite_drill_menu", CaloriteDrillControllerMenu::new);
 
+    public static final RegistryObject<MenuType<GlacioDrillControllerMenu>> GLACIO_DRILL_MENU =
+            registerMenuType("glacio_drill_menu", GlacioDrillControllerMenu::new);
+
+
     // rocket assembler
     public static final RegistryObject<MenuType<T1RocketAssemblerControllerMenu>> T1_ROCKET_ASSEMBLER_MENU =
             registerMenuType("t1_rocket_assembler_menu", T1RocketAssemblerControllerMenu::new);
@@ -60,6 +64,18 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<T5RocketAssemblerControllerMenu>> T5_ROCKET_ASSEMBLER_MENU =
             registerMenuType("t5_rocket_assembler_menu", T5RocketAssemblerControllerMenu::new);
 
+    // Special multi
+    public static final RegistryObject<MenuType<Printer3DControllerMenu>> PRINTER_3D_MENU =
+            registerMenuType("printer_3d_menu", Printer3DControllerMenu::new);
+
+    public static final RegistryObject<MenuType<TransmutationConstructorControllerMenu>> TRANSMUTATION_CONSTRUCTOR_MENU =
+            registerMenuType("transmutation_constructor", TransmutationConstructorControllerMenu::new);
+
+    public static final RegistryObject<MenuType<RitualSiteControllerMenu>> RITUAL_SITE_MENU =
+            registerMenuType("ritual_site_menu", RitualSiteControllerMenu::new);
+
+    public static final RegistryObject<MenuType<SkyblockBuilderControllerMenu>> SKYBLOCK_BUILDER_MENU =
+            registerMenuType("skyblock_builder_menu", SkyblockBuilderControllerMenu::new);
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

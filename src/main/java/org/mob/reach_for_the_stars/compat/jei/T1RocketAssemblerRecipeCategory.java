@@ -14,7 +14,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import org.mob.reach_for_the_stars.Reach_for_the_stars;
 import org.mob.reach_for_the_stars.block.ModBlocks;
 import org.mob.reach_for_the_stars.recipe.T1RocketAssemblerRecipe;
 
@@ -24,7 +23,6 @@ import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;
 
 public class T1RocketAssemblerRecipeCategory implements IRecipeCategory<T1RocketAssemblerRecipe> {
     public static final ResourceLocation UID = resourceLocation("t1_rocket_assembler");
-    public static final ResourceLocation TEXTURE = resourceLocation("textures/gui/jei/item_to_item_jei.png");
 
     public static final RecipeType<T1RocketAssemblerRecipe> T1_ROCKET_ASSEMBLER_RECIPE_TYPE =
             new RecipeType<>(UID, T1RocketAssemblerRecipe.class);
@@ -34,7 +32,7 @@ public class T1RocketAssemblerRecipeCategory implements IRecipeCategory<T1Rocket
     private final IDrawable arrow;
 
     public T1RocketAssemblerRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 151, 66);
+        this.background = helper.createBlankDrawable(151, 66);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.T1_ROCKET_ASSEMBLER_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);
     }
