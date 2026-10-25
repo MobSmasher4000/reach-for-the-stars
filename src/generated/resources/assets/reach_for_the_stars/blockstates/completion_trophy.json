@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "reach_for_the_stars:block/completion_trophy",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "reach_for_the_stars:block/completion_trophy"
+    },
+    "facing=south": {
+      "model": "reach_for_the_stars:block/completion_trophy",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "reach_for_the_stars:block/completion_trophy",
+      "y": 270
+    }
+  }
+}

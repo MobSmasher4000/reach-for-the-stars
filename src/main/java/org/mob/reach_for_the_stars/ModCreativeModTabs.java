@@ -19,6 +19,7 @@ public class ModCreativeModTabs {
                     .title(Component.translatable("creative_tab.rftsc_tab"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModItems.STELLAR_ODYSSEY_MUSIC_DISC.get());
+                        pOutput.accept(ModBlocks.COMPLETION_TROPHY.get());
                         pOutput.accept(ModItems.WINNER_PLANET.get());
                         pOutput.accept(ModBlocks.ITEM_INPUT_HATCH.get());
                         pOutput.accept(ModBlocks.ITEM_OUTPUT_HATCH.get());

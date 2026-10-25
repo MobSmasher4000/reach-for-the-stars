@@ -33,7 +33,7 @@ public class Printer3DRecipeCategory implements IRecipeCategory<Printer3DRecipe>
     private final IDrawable arrow;
 
     public Printer3DRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createBlankDrawable(160, 66);
+        this.background = helper.createBlankDrawable(160, 166);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.PRINTER_3D_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);
     }

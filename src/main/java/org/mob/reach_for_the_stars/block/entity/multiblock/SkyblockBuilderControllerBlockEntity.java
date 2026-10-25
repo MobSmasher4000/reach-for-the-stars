@@ -52,7 +52,7 @@ public class SkyblockBuilderControllerBlockEntity extends BlockEntity implements
     private final List<BlockPos> fluidInputHatches = new ArrayList<>();
 
     public SkyblockBuilderControllerBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.PRINTER_3D_CONTROLLER_BE.get(), pPos, pBlockState);
+        super(ModBlockEntities.SKYBLOCK_BUILDER_CONTROLLER_BE.get(), pPos, pBlockState);
     }
 
     protected final ContainerData data = new ContainerData() {
@@ -93,7 +93,7 @@ public class SkyblockBuilderControllerBlockEntity extends BlockEntity implements
     }
 
     private void updateStructure(Level level, BlockPos pos, BlockState state) {
-        MultiblockPattern.MatchResult result = MultiblockPatterns.PRINTER_3D.check(
+        MultiblockPattern.MatchResult result = MultiblockPatterns.SKYBLOCK_BUILDER.check(
                 level, pos, state.getValue(SkyblockBuilderControllerBlock.FACING)
         );
 

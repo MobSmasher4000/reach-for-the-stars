@@ -19,6 +19,7 @@
     "reach_for_the_stars:transmutation_constructor_controller",
     "reach_for_the_stars:ritual_site_controller",
     "reach_for_the_stars:printer_3d_controller",
-    "reach_for_the_stars:skyblock_builder_controller"
+    "reach_for_the_stars:skyblock_builder_controller",
+    "reach_for_the_stars:completion_trophy"
   ]
 }

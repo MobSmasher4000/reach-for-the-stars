@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.mob.reach_for_the_stars.Reach_for_the_stars;
+import org.mob.reach_for_the_stars.block.ModBlocks;
 import org.mob.reach_for_the_stars.block.entity.ModBlockEntities;
 import org.mob.reach_for_the_stars.block.entity.renderer.*;
 import org.mob.reach_for_the_stars.fluid.ModFluids;
@@ -80,6 +81,8 @@ public class ModClientEvents {
 
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_GLACIO_DRILL_FLUID.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_GLACIO_DRILL_FLUID.get(), RenderType.translucent());
+
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.COMPLETION_TROPHY.get(), RenderType.cutout());
         });
     }
 

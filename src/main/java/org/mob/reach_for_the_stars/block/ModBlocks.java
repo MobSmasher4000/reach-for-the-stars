@@ -11,6 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.mob.reach_for_the_stars.Reach_for_the_stars;
+import org.mob.reach_for_the_stars.block.custom.TrophyBlock;
 import org.mob.reach_for_the_stars.block.custom.hatch.*;
 import org.mob.reach_for_the_stars.block.custom.multiblock.*;
 import org.mob.reach_for_the_stars.fluid.ModFluids;
@@ -105,6 +106,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> RITUAL_SITE_CONTROLLER = registerBlock("ritual_site_controller",
             () -> new RitualSiteControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
 
+    // Trophy
+    public static final RegistryObject<Block> COMPLETION_TROPHY = registerBlock("completion_trophy",
+            TrophyBlock::new);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

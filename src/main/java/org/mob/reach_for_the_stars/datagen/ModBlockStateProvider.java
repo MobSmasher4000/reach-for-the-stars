@@ -28,6 +28,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         hatchBlock(ModBlocks.FLUID_INPUT_HATCH.get());
         hatchBlock(ModBlocks.FLUID_OUTPUT_HATCH.get());
         hatchBlock(ModBlocks.ENERGY_INPUT_HATCH.get());
+        horizontalBlock(ModBlocks.COMPLETION_TROPHY.get(), models().getExistingFile(modLoc("block/completion_trophy")));
     }
 
     private void hatchBlock(Block block) {

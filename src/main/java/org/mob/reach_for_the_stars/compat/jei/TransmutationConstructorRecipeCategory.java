@@ -32,7 +32,7 @@ public class TransmutationConstructorRecipeCategory implements IRecipeCategory<T
     private final IDrawable arrow;
 
     public TransmutationConstructorRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createBlankDrawable(151, 66);
+        this.background = helper.createBlankDrawable(151, 151);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.TRANSMUTATION_CONSTRUCTOR_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);
     }

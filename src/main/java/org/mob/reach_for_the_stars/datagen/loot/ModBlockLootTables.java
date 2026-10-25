@@ -35,6 +35,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.TRANSMUTATION_CONSTRUCTOR_CONTROLLER.get());
         dropSelf(ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get());
         dropSelf(ModBlocks.RITUAL_SITE_CONTROLLER.get());
+        dropSelf(ModBlocks.COMPLETION_TROPHY.get());
     }
 
     @Override

@@ -32,7 +32,7 @@ public class RitualSiteRecipeCategory implements IRecipeCategory<RitualSiteRecip
     private final IDrawable arrow;
 
     public RitualSiteRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createBlankDrawable(151, 66);
+        this.background = helper.createBlankDrawable(151, 166);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.RITUAL_SITE_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);
     }

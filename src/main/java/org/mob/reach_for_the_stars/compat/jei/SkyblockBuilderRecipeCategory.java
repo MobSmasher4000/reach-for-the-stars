@@ -33,7 +33,7 @@ public class SkyblockBuilderRecipeCategory implements IRecipeCategory<SkyblockBu
     private final IDrawable arrow;
 
     public SkyblockBuilderRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createBlankDrawable(160, 66);
+        this.background = helper.createBlankDrawable(160, 160);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);
     }

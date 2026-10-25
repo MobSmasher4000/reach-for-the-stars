@@ -1,5 +1,6 @@
-// 1.20.1	2026-10-22T20:27:01.5128298	Loot Tables
+// 1.20.1	2026-10-25T13:51:59.7516258	Loot Tables
 9c92ded6d58e0a9fdeb23ca42525ceca1aae0820 data/reach_for_the_stars/loot_tables/blocks/calorite_drill_controller.json
+62ddf4b6eb8662839e55a3223aff598e72802846 data/reach_for_the_stars/loot_tables/blocks/completion_trophy.json
 2c28d94ee157e843732d812c72a7cb300a90c871 data/reach_for_the_stars/loot_tables/blocks/desh_drill_controller.json
 d22c3fa566262183a9aea0a2e1c0bf46ed9c9b43 data/reach_for_the_stars/loot_tables/blocks/energy_input_hatch.json
 f70395e303508c30696e118d2740826f1d8f911f data/reach_for_the_stars/loot_tables/blocks/fluid_input_hatch.json

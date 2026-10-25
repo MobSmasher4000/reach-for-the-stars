@@ -1836,7 +1836,6 @@ public class MultiblockPatterns {
             .where('S', state -> isBlock(state, "ad_astra", "glowing_iron_pillar"), getBlockSafe("ad_astra", "glowing_iron_pillar"))
             .where('T', state -> isBlock(state, "twilightforest", "twisted_stone_pillar"), getBlockSafe("twilightforest", "twisted_stone_pillar"))
             .where('U', state -> isBlock(state, "chisel", "technical/industrialrelic"), getBlockSafe("chisel", "technical/industrialrelic"))
-            .where('V', state -> isBlock(state, "immersiveengineering", "connector_hv_relay"), getBlockSafe("immersiveengineering", "connector_hv_relay"))
             .where('W', state -> isBlock(state, "ae2", "quartz_glass"), getBlockSafe("ae2", "quartz_glass"))
             .where('X', state -> isBlock(state, "chisel", "technical/fanfast"), getBlockSafe("chisel", "technical/fanfast"))
             .where('Y', state -> isBlock(state, "chisel", "technical/exhaustplating"), getBlockSafe("chisel", "technical/exhaustplating"))
@@ -2194,7 +2193,7 @@ public class MultiblockPatterns {
             .layer(
                     "               ",
                     "               ",
-                    "   BDDDDDDDDDB ",
+                    "   DDDDDDDDDDD ",
                     "   DEEEEEEEEED ",
                     "   DEEEEEEEEED ",
                     "   DEEEEEEEEED ",
@@ -2203,7 +2202,7 @@ public class MultiblockPatterns {
                     "   DEEEEEEEEED ",
                     "   DEEEEEEEEED ",
                     "   DEEEEEEEEED ",
-                    "   BDDDDDDDDDB ",
+                    "   DDDDDDDDDDD ",
                     "               ",
                     "               ",
                     "               ")
@@ -2364,7 +2363,7 @@ public class MultiblockPatterns {
             .layer(
                     "               ",
                     "               ",
-                    "   BDDDDDDDDDB ",
+                    "   DDDDDDDDDDD ",
                     "   DEEEEEEEEED ",
                     "   DEEEEEEEEED ",
                     "   DEEEEEEEEED ",
@@ -2373,7 +2372,7 @@ public class MultiblockPatterns {
                     "   DEEEEEEEEED ",
                     "   DEEEEEEEEED ",
                     "   DEEEEEEEEED ",
-                    "   BDDDDDDDDDB ",
+                    "   DDDDDDDDDDD ",
                     "    PSSSSSP    ",
                     "    YVU   Q    ",
                     "    PSSSSSP    ")
