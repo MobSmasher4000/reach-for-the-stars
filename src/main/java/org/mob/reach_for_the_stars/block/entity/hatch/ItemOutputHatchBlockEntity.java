@@ -3,7 +3,6 @@ package org.mob.reach_for_the_stars.block.entity.hatch;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -55,24 +54,12 @@ public class ItemOutputHatchBlockEntity extends BlockEntity implements MenuProvi
         }
     });
 
-    private BlockPos controllerPos = null;
-
     public ItemOutputHatchBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.ITEM_OUTPUT_HATCH_BE.get(), pPos, pBlockState);
     }
 
     public ItemStackHandler getInternalInventory() {
         return this.itemHandler;
-    }
-
-    public void setControllerPos(@Nullable BlockPos pos) {
-        this.controllerPos = pos;
-        setChanged();
-    }
-
-    @Nullable
-    public BlockPos getControllerPos() {
-        return this.controllerPos;
     }
 
     public void drops() {
@@ -101,10 +88,6 @@ public class ItemOutputHatchBlockEntity extends BlockEntity implements MenuProvi
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("Inventory", itemHandler.serializeNBT());
-
-        if (this.controllerPos != null) {
-            pTag.put("ControllerPos", NbtUtils.writeBlockPos(this.controllerPos));
-        }
     }
 
     @Override
@@ -112,12 +95,6 @@ public class ItemOutputHatchBlockEntity extends BlockEntity implements MenuProvi
         super.load(pTag);
         if (pTag.contains("Inventory")) {
             itemHandler.deserializeNBT(pTag.getCompound("Inventory"));
-        }
-
-        if (pTag.contains("ControllerPos")) {
-            this.controllerPos = NbtUtils.readBlockPos(pTag.getCompound("ControllerPos"));
-        } else {
-            this.controllerPos = null;
         }
     }
 

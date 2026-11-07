@@ -2,9 +2,15 @@
   "stellar_odyssey": {
     "sounds": [
       {
-        "name": "resource_capsules:stellar_odyssey",
+        "name": "reach_for_the_stars:stellar_odyssey",
         "stream": true
       }
+    ]
+  },
+  "pack_completion": {
+    "subtitle": "sounds.reach_for_the_stars.pack_completion",
+    "sounds": [
+      "reach_for_the_stars:pack_completion"
     ]
   }
 }

@@ -1,5 +1,6 @@
 {
-  "type": "reach_for_the_stars:t3_rocket_assembler",
+  "type": "reach_for_the_stars:rocket_assembler",
+  "tier": 3,
   "ingredients": [
     {
       "count": 1,

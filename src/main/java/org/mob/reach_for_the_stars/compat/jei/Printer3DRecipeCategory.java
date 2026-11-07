@@ -15,6 +15,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.fluids.FluidStack;
 import org.mob.reach_for_the_stars.block.ModBlocks;
 import org.mob.reach_for_the_stars.recipe.Printer3DRecipe;
 
@@ -33,7 +34,7 @@ public class Printer3DRecipeCategory implements IRecipeCategory<Printer3DRecipe>
     private final IDrawable arrow;
 
     public Printer3DRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createBlankDrawable(160, 166);
+        this.background = helper.createBlankDrawable(200, 70);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.PRINTER_3D_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);
     }
@@ -60,21 +61,42 @@ public class Printer3DRecipeCategory implements IRecipeCategory<Printer3DRecipe>
 
     @Override
     public void draw(Printer3DRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        arrow.draw(guiGraphics, 92, 28);
+        int fluidCols = recipe.getFluidInputs().isEmpty() ? 0 : Math.min(3, recipe.getFluidInputs().size());
+
+        int fluidBaseX = 10;
+        int itemBaseX = fluidBaseX + (fluidCols * 18) + (fluidCols > 0 ? 10 : 0);
+
+        int arrowX = itemBaseX + 54 + 10;
+
+        arrow.draw(guiGraphics, arrowX, 28);
     }
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, Printer3DRecipe recipe, IFocusGroup focuses) {
 
-        // Fluid Tank (Far Left)
-        builder.addSlot(RecipeIngredientRole.INPUT, 6, 11)
-                .addIngredient(ForgeTypes.FLUID_STACK, recipe.getFluidInput())
-                .setFluidRenderer(recipe.getFluidInput().getAmount(), true, 16, 45);
-
-        // Item Grids (Middle)
-        int baseX = 33;
-        int baseY = 10;
         int slotSize = 18;
+
+        // Fluid tanks
+        int fluidBaseX = 10;
+        int fluidBaseY = 10;
+        List<FluidStack> fluids = recipe.getFluidInputs();
+
+        for (int i = 0; i < fluids.size(); i++) {
+            int row = i / 3;
+            int col = i % 3;
+            int x = fluidBaseX + col * slotSize;
+            int y = fluidBaseY + row * slotSize;
+
+            builder.addSlot(RecipeIngredientRole.INPUT, x, y)
+                    .addIngredient(ForgeTypes.FLUID_STACK, fluids.get(i))
+                    .setFluidRenderer(fluids.get(i).getAmount(), true, 16, 16);
+        }
+
+        int fluidCols = fluids.isEmpty() ? 0 : Math.min(3, fluids.size());
+
+        // Item inputs
+        int itemBaseX = fluidBaseX + (fluidCols * slotSize) + (fluidCols > 0 ? 10 : 0);
+        int itemBaseY = 10;
 
         List<Ingredient> inputs = recipe.getIngredientsList();
         List<Integer> counts = recipe.getInputCounts();
@@ -82,8 +104,8 @@ public class Printer3DRecipeCategory implements IRecipeCategory<Printer3DRecipe>
         for (int i = 0; i < inputs.size(); i++) {
             int row = i / 3;
             int col = i % 3;
-            int x = baseX + col * slotSize;
-            int y = baseY + row * slotSize;
+            int x = itemBaseX + col * slotSize;
+            int y = itemBaseY + row * slotSize;
 
             Ingredient ing = inputs.get(i);
             int count = counts.get(i);
@@ -100,8 +122,11 @@ public class Printer3DRecipeCategory implements IRecipeCategory<Printer3DRecipe>
             }
         }
 
-        // Item Output (Right)
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 126, 27)
+        // Item output
+        int arrowX = itemBaseX + 54 + 10;
+        int outputX = arrowX + 24 + 10;
+
+        builder.addSlot(RecipeIngredientRole.OUTPUT, outputX, 27)
                 .addItemStack(recipe.getResultItem(null));
     }
 }

@@ -14,35 +14,11 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<FuelDistilleryRecipe>> FUEL_DISTILLERY_SERIALIZER =
             SERIALIZERS.register("fuel_distillery", () -> FuelDistilleryRecipe.Serializer.INSTANCE);
 
-    public static final RegistryObject<RecipeSerializer<SteelDrillRecipe>> STEEL_DRILL_SERIALIZER =
-            SERIALIZERS.register("steel_drill", () -> SteelDrillRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<PlanetaryDrillRecipe>> PLANETARY_DRILL_SERIALIZER =
+            SERIALIZERS.register("planetary_drill", () -> PlanetaryDrillRecipe.Serializer.INSTANCE);
 
-    public static final RegistryObject<RecipeSerializer<DeshDrillRecipe>> DESH_DRILL_SERIALIZER =
-            SERIALIZERS.register("desh_drill", () -> DeshDrillRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeSerializer<OstrumDrillRecipe>> OSTRUM_DRILL_SERIALIZER =
-            SERIALIZERS.register("ostrum_drill", () -> OstrumDrillRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeSerializer<CaloriteDrillRecipe>> CALORITE_DRILL_SERIALIZER =
-            SERIALIZERS.register("calorite_drill", () -> CaloriteDrillRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeSerializer<GlacioDrillRecipe>> GLACIO_DRILL_SERIALIZER =
-            SERIALIZERS.register("glacio_drill", () -> GlacioDrillRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeSerializer<T1RocketAssemblerRecipe>> T1_ROCKET_ASSEMBLER_SERIALIZER =
-            SERIALIZERS.register("t1_rocket_assembler", () -> T1RocketAssemblerRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeSerializer<T2RocketAssemblerRecipe>> T2_ROCKET_ASSEMBLER_SERIALIZER =
-            SERIALIZERS.register("t2_rocket_assembler", () -> T2RocketAssemblerRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeSerializer<T3RocketAssemblerRecipe>> T3_ROCKET_ASSEMBLER_SERIALIZER =
-            SERIALIZERS.register("t3_rocket_assembler", () -> T3RocketAssemblerRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeSerializer<T4RocketAssemblerRecipe>> T4_ROCKET_ASSEMBLER_SERIALIZER =
-            SERIALIZERS.register("t4_rocket_assembler", () -> T4RocketAssemblerRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeSerializer<T5RocketAssemblerRecipe>> T5_ROCKET_ASSEMBLER_SERIALIZER =
-            SERIALIZERS.register("t5_rocket_assembler", () -> T5RocketAssemblerRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<RocketAssemblerRecipe>> ROCKET_ASSEMBLER_SERIALIZER =
+            SERIALIZERS.register("rocket_assembler", () -> RocketAssemblerRecipe.Serializer.INSTANCE);
 
     public static final RegistryObject<RecipeSerializer<Printer3DRecipe>> PRINTER_3D_SERIALIZER =
             SERIALIZERS.register("printer_3d", () -> Printer3DRecipe.Serializer.INSTANCE);
@@ -55,6 +31,9 @@ public class ModRecipes {
 
     public static final RegistryObject<RecipeSerializer<RitualSiteRecipe>> RITUAL_SITE_SERIALIZER =
             SERIALIZERS.register("ritual_site", () -> RitualSiteRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<ContainedSpaceStationRecipe>> CONTAINED_SPACE_STATION_SERIALIZER =
+            SERIALIZERS.register("contained_space_station", () -> ContainedSpaceStationRecipe.Serializer.INSTANCE);
 
 
     public static void register(IEventBus eventBus) {

@@ -15,7 +15,8 @@
     "   "
   ],
   "result": {
-    "item": "reach_for_the_stars:mars_clay"
+    "item": "reach_for_the_stars:mars_clay",
+    "count": 4
   },
   "show_notification": true
 }

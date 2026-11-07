@@ -10,7 +10,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.mob.reach_for_the_stars.Reach_for_the_stars;
 import org.mob.reach_for_the_stars.fluid.ModFluids;
-import org.mob.reach_for_the_stars.item.custom.WinnerRewards;
 import org.mob.reach_for_the_stars.sound.ModSounds;
 
 public class ModItems {
@@ -118,7 +117,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> WINNER_PLANET = ITEMS.register("winner_planet",
-            () -> new WinnerRewards("winner_planet"));
+            () -> new Item(new Item.Properties()));
 
     // Drill Fluids
     public static final RegistryObject<Item> STEEL_DRILL_FLUID_BUCKET = ITEMS.register("steel_drill_fluid_bucket",

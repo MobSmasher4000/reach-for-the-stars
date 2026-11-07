@@ -239,5 +239,9 @@ public class MultiblockPattern {
         public List<BlockPos> getPositions(char character) {
             return matchedBlocks.getOrDefault(character, Collections.emptyList());
         }
+
+        public Map<Character, List<BlockPos>> getMatchedBlocks() {
+            return this.matchedBlocks;
+        }
     }
 }

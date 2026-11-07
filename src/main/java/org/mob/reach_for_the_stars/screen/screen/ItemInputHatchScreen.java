@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import org.mob.reach_for_the_stars.Reach_for_the_stars;
 import org.mob.reach_for_the_stars.screen.menu.ItemInputHatchMenu;
 
 import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;

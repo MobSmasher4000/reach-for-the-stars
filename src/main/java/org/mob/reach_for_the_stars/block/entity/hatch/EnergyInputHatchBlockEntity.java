@@ -3,13 +3,8 @@ package org.mob.reach_for_the_stars.block.entity.hatch;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.Connection;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -68,24 +63,12 @@ public class EnergyInputHatchBlockEntity extends BlockEntity {
         @Override public int extractEnergy(int maxExtract, boolean simulate) { return 0; }
     });
 
-    private BlockPos controllerPos = null;
-
     public EnergyInputHatchBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.ENERGY_INPUT_HATCH_BE.get(), pPos, pBlockState);
     }
 
     public EnergyStorage getInternalEnergyStorage() {
         return this.energyStorage;
-    }
-
-    public void setControllerPos(@Nullable BlockPos pos) {
-        this.controllerPos = pos;
-        setChanged();
-    }
-
-    @Nullable
-    public BlockPos getControllerPos() {
-        return this.controllerPos;
     }
 
     @Override
@@ -106,10 +89,6 @@ public class EnergyInputHatchBlockEntity extends BlockEntity {
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("Energy", energyStorage.serializeNBT());
-        
-        if (this.controllerPos != null) {
-            pTag.put("ControllerPos", NbtUtils.writeBlockPos(this.controllerPos));
-        }
     }
 
     @Override
@@ -117,12 +96,6 @@ public class EnergyInputHatchBlockEntity extends BlockEntity {
         super.load(pTag);
         if (pTag.contains("Energy")) {
             energyStorage.deserializeNBT(pTag.get("Energy"));
-        }
-        
-        if (pTag.contains("ControllerPos")) {
-            this.controllerPos = NbtUtils.readBlockPos(pTag.getCompound("ControllerPos"));
-        } else {
-            this.controllerPos = null;
         }
     }
 

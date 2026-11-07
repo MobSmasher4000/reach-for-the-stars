@@ -44,57 +44,17 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(FuelDistilleryControllerBlockEntity::new,
                             ModBlocks.FUEL_DISTILLERY_CONTROLLER.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<SteelDrillControllerBlockEntity>> STEEL_DRILL_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("steel_drill_controller_be", () ->
-                    BlockEntityType.Builder.of(SteelDrillControllerBlockEntity::new,
-                            ModBlocks.STEEL_DRILL_CONTROLLER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<DeshDrillControllerBlockEntity>> DESH_DRILL_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("desh_drill_controller_be", () ->
-                    BlockEntityType.Builder.of(DeshDrillControllerBlockEntity::new,
-                            ModBlocks.DESH_DRILL_CONTROLLER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<OstrumDrillControllerBlockEntity>> OSTRUM_DRILL_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("ostrum_drill_controller_be", () ->
-                    BlockEntityType.Builder.of(OstrumDrillControllerBlockEntity::new,
-                            ModBlocks.OSTRUM_DRILL_CONTROLLER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<CaloriteDrillControllerBlockEntity>> CALORITE_DRILL_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("calorite_drill_controller_be", () ->
-                    BlockEntityType.Builder.of(CaloriteDrillControllerBlockEntity::new,
-                            ModBlocks.CALORITE_DRILL_CONTROLLER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<GlacioDrillControllerBlockEntity>> GLACIO_DRILL_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("glacio_drill_controller_be", () ->
-                    BlockEntityType.Builder.of(GlacioDrillControllerBlockEntity::new,
-                            ModBlocks.GLACIO_DRILL_CONTROLLER.get()).build(null));
-
+    // Drill
+    public static final RegistryObject<BlockEntityType<PlanetaryDrillControllerBlockEntity>> PLANETARY_DRILL_CONTROLLER_BE =
+            BLOCK_ENTITIES.register("planetary_drill_controller_be", () ->
+                    BlockEntityType.Builder.of(PlanetaryDrillControllerBlockEntity::new,
+                            ModBlocks.STEEL_DRILL_CONTROLLER.get(), ModBlocks.DESH_DRILL_CONTROLLER.get(), ModBlocks.OSTRUM_DRILL_CONTROLLER.get(), ModBlocks.CALORITE_DRILL_CONTROLLER.get(), ModBlocks.GLACIO_DRILL_CONTROLLER.get()).build(null));
 
     // Rocket assemblers
-    public static final RegistryObject<BlockEntityType<T1RocketAssemblerControllerBlockEntity>> T1_ROCKET_ASSEMBLER_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("t1_rocket_assembler_controller_be", () ->
-                    BlockEntityType.Builder.of(T1RocketAssemblerControllerBlockEntity::new,
-                            ModBlocks.T1_ROCKET_ASSEMBLER_CONTROLLER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<T2RocketAssemblerControllerBlockEntity>> T2_ROCKET_ASSEMBLER_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("t2_rocket_assembler_controller_be", () ->
-                    BlockEntityType.Builder.of(T2RocketAssemblerControllerBlockEntity::new,
-                            ModBlocks.T2_ROCKET_ASSEMBLER_CONTROLLER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<T3RocketAssemblerControllerBlockEntity>> T3_ROCKET_ASSEMBLER_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("t3_rocket_assembler_controller_be", () ->
-                    BlockEntityType.Builder.of(T3RocketAssemblerControllerBlockEntity::new,
-                            ModBlocks.T3_ROCKET_ASSEMBLER_CONTROLLER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<T4RocketAssemblerControllerBlockEntity>> T4_ROCKET_ASSEMBLER_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("t4_rocket_assembler_controller_be", () ->
-                    BlockEntityType.Builder.of(T4RocketAssemblerControllerBlockEntity::new,
-                            ModBlocks.T4_ROCKET_ASSEMBLER_CONTROLLER.get()).build(null));
-
-    public static final RegistryObject<BlockEntityType<T5RocketAssemblerControllerBlockEntity>> T5_ROCKET_ASSEMBLER_CONTROLLER_BE =
-            BLOCK_ENTITIES.register("t5_rocket_assembler_controller_be", () ->
-                    BlockEntityType.Builder.of(T5RocketAssemblerControllerBlockEntity::new,
-                            ModBlocks.T5_ROCKET_ASSEMBLER_CONTROLLER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<RocketAssemblerControllerBlockEntity>> ROCKET_ASSEMBLER_CONTROLLER_BE =
+            BLOCK_ENTITIES.register("rocket_assembler_controller_be", () ->
+                    BlockEntityType.Builder.of(RocketAssemblerControllerBlockEntity::new,
+                            ModBlocks.T1_ROCKET_ASSEMBLER_CONTROLLER.get(),ModBlocks.T2_ROCKET_ASSEMBLER_CONTROLLER.get(),ModBlocks.T3_ROCKET_ASSEMBLER_CONTROLLER.get(),ModBlocks.T4_ROCKET_ASSEMBLER_CONTROLLER.get(),ModBlocks.T5_ROCKET_ASSEMBLER_CONTROLLER.get()).build(null));
 
     // Special multi
     public static final RegistryObject<BlockEntityType<Printer3DControllerBlockEntity>> PRINTER_3D_CONTROLLER_BE =
@@ -116,6 +76,11 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("ritual_site_controller_be", () ->
                     BlockEntityType.Builder.of(RitualSiteControllerBlockEntity::new,
                             ModBlocks.RITUAL_SITE_CONTROLLER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<ContainedSpaceStationControllerBlockEntity>> CONTAINED_SPACE_STATION_CONTROLLER_BE =
+            BLOCK_ENTITIES.register("contained_space_station_controller_be", () ->
+                    BlockEntityType.Builder.of(ContainedSpaceStationControllerBlockEntity::new,
+                            ModBlocks.CONTAINED_SPACE_STATION_CONTROLLER.get()).build(null));
 
 
 

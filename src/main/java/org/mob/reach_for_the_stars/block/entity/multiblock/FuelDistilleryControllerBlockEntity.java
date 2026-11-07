@@ -28,6 +28,7 @@ import org.mob.reach_for_the_stars.block.entity.ModBlockEntities;
 import org.mob.reach_for_the_stars.block.entity.hatch.EnergyInputHatchBlockEntity;
 import org.mob.reach_for_the_stars.block.entity.hatch.FluidInputHatchBlockEntity;
 import org.mob.reach_for_the_stars.block.entity.hatch.FluidOutputHatchBlockEntity;
+import org.mob.reach_for_the_stars.block.entity.hatch.ItemOutputHatchBlockEntity;
 import org.mob.reach_for_the_stars.recipe.FuelDistilleryRecipe;
 import org.mob.reach_for_the_stars.screen.menu.FuelDistilleryControllerMenu;
 import org.mob.reach_for_the_stars.util.MultiblockPattern;
@@ -152,43 +153,24 @@ public class FuelDistilleryControllerBlockEntity extends BlockEntity implements 
     private void linkHatches(Level level, BlockPos controllerPos, MultiblockPattern.MatchResult result) {
         unlinkHatches(level);
 
-        // 'F' is Fluid Input
-        for (BlockPos targetPos : result.getPositions('F')) {
-            if (level.getBlockEntity(targetPos) instanceof FluidInputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.fluidInputHatches.add(targetPos);
-            }
-        }
+        // Iterate through all matched positions in the multiblock
+        for (List<BlockPos> positions : result.getMatchedBlocks().values()) {
+            for (BlockPos targetPos : positions) {
+                BlockEntity be = level.getBlockEntity(targetPos);
 
-        // 'G' is Fluid Output
-        for (BlockPos targetPos : result.getPositions('G')) {
-            if (level.getBlockEntity(targetPos) instanceof FluidOutputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.fluidOutputHatches.add(targetPos);
-            }
-        }
-
-        // 'H' is Energy Input
-        for (BlockPos targetPos : result.getPositions('H')) {
-            if (level.getBlockEntity(targetPos) instanceof EnergyInputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.energyInputHatches.add(targetPos);
+                if (be instanceof FluidInputHatchBlockEntity fluidHatch) {
+                    this.fluidInputHatches.add(targetPos);
+                } else if (be instanceof FluidOutputHatchBlockEntity) {
+                    this.fluidOutputHatches.add(targetPos);
+                } else if (be instanceof EnergyInputHatchBlockEntity energyHatch) {
+                    this.energyInputHatches.add(targetPos);
+                }
             }
         }
     }
 
 
     private void unlinkHatches(Level level) {
-        for (BlockPos targetPos : fluidInputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof FluidInputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-        for (BlockPos targetPos : fluidOutputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof FluidOutputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-        for (BlockPos targetPos : energyInputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof EnergyInputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-
         this.fluidInputHatches.clear();
         this.fluidOutputHatches.clear();
         this.energyInputHatches.clear();

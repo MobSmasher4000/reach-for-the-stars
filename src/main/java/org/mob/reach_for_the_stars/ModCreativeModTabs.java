@@ -41,6 +41,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModBlocks.TRANSMUTATION_CONSTRUCTOR_CONTROLLER.get());
                         pOutput.accept(ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get());
                         pOutput.accept(ModBlocks.RITUAL_SITE_CONTROLLER.get());
+                        pOutput.accept(ModBlocks.CONTAINED_SPACE_STATION_CONTROLLER.get());
 
 
                         pOutput.accept(ModItems.RFTS.get());

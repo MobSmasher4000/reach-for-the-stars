@@ -46,35 +46,35 @@ public class ModBlocks {
 
     // Drills
     public static final RegistryObject<Block> STEEL_DRILL_CONTROLLER = registerBlock("steel_drill_controller",
-            () -> new SteelDrillControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new PlanetaryDrillControllerBlock(DrillTier.STEEL));
 
     public static final RegistryObject<Block> DESH_DRILL_CONTROLLER = registerBlock("desh_drill_controller",
-            () -> new DeshDrillControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new PlanetaryDrillControllerBlock(DrillTier.DESH));
 
     public static final RegistryObject<Block> OSTRUM_DRILL_CONTROLLER = registerBlock("ostrum_drill_controller",
-            () -> new OstrumDrillControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new PlanetaryDrillControllerBlock(DrillTier.OSTRUM));
 
     public static final RegistryObject<Block> CALORITE_DRILL_CONTROLLER = registerBlock("calorite_drill_controller",
-            () -> new CaloriteDrillControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new PlanetaryDrillControllerBlock(DrillTier.CALORITE));
 
     public static final RegistryObject<Block> GLACIO_DRILL_CONTROLLER = registerBlock("glacio_drill_controller",
-            () -> new GlacioDrillControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new PlanetaryDrillControllerBlock(DrillTier.GLACIO));
 
     // Rocket Assemblers
     public static final RegistryObject<Block> T1_ROCKET_ASSEMBLER_CONTROLLER = registerBlock("t1_rocket_assembler_controller",
-            () -> new T1RocketAssemblerControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new RocketAssemblerControllerBlock(RocketAssemblerTier.T1));
 
     public static final RegistryObject<Block> T2_ROCKET_ASSEMBLER_CONTROLLER = registerBlock("t2_rocket_assembler_controller",
-            () -> new T2RocketAssemblerControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new RocketAssemblerControllerBlock(RocketAssemblerTier.T2));
 
     public static final RegistryObject<Block> T3_ROCKET_ASSEMBLER_CONTROLLER = registerBlock("t3_rocket_assembler_controller",
-            () -> new T3RocketAssemblerControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new RocketAssemblerControllerBlock(RocketAssemblerTier.T3));
 
     public static final RegistryObject<Block> T4_ROCKET_ASSEMBLER_CONTROLLER = registerBlock("t4_rocket_assembler_controller",
-            () -> new T4RocketAssemblerControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new RocketAssemblerControllerBlock(RocketAssemblerTier.T4));
 
     public static final RegistryObject<Block> T5_ROCKET_ASSEMBLER_CONTROLLER = registerBlock("t5_rocket_assembler_controller",
-            () -> new T5RocketAssemblerControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+            () -> new RocketAssemblerControllerBlock(RocketAssemblerTier.T5));
 
 
     // Drill Fluids
@@ -105,6 +105,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> RITUAL_SITE_CONTROLLER = registerBlock("ritual_site_controller",
             () -> new RitualSiteControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> CONTAINED_SPACE_STATION_CONTROLLER = registerBlock("contained_space_station_controller",
+            () -> new ContainedSpaceStationControllerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).requiresCorrectToolForDrops()));
+
 
     // Trophy
     public static final RegistryObject<Block> COMPLETION_TROPHY = registerBlock("completion_trophy",

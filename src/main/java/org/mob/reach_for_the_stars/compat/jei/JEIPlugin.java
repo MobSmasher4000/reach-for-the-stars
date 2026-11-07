@@ -27,20 +27,13 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new FuelDistilleryRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new SteelDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new DeshDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new OstrumDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new CaloriteDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new GlacioDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new T1RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new T2RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new T3RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new T4RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new T5RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new PlanetaryDrillRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new RocketAssemblerRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new TransmutationConstructorRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new Printer3DRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new RitualSiteRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new SkyblockBuilderRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ContainedSpaceStationRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -50,35 +43,11 @@ public class JEIPlugin implements IModPlugin {
         List<FuelDistilleryRecipe> fuelDistilleryRecipes = recipeManager.getAllRecipesFor(FuelDistilleryRecipe.Type.INSTANCE);
         registration.addRecipes(FuelDistilleryRecipeCategory.FUEL_DISTILLERY_RECIPE_TYPE, fuelDistilleryRecipes);
 
-        List<SteelDrillRecipe> steelDrillRecipes = recipeManager.getAllRecipesFor(SteelDrillRecipe.Type.INSTANCE);
-        registration.addRecipes(SteelDrillRecipeCategory.STEEL_DRILL_RECIPE_TYPE, steelDrillRecipes);
+        List<PlanetaryDrillRecipe> planetaryDrillRecipes = recipeManager.getAllRecipesFor(PlanetaryDrillRecipe.Type.INSTANCE);
+        registration.addRecipes(PlanetaryDrillRecipeCategory.PLANETARY_DRILL_RECIPE_TYPE, planetaryDrillRecipes);
 
-        List<DeshDrillRecipe> deshDrillRecipes = recipeManager.getAllRecipesFor(DeshDrillRecipe.Type.INSTANCE);
-        registration.addRecipes(DeshDrillRecipeCategory.DESH_DRILL_RECIPE_TYPE, deshDrillRecipes);
-
-        List<OstrumDrillRecipe> ostrumDrillRecipes = recipeManager.getAllRecipesFor(OstrumDrillRecipe.Type.INSTANCE);
-        registration.addRecipes(OstrumDrillRecipeCategory.OSTRUM_DRILL_RECIPE_TYPE, ostrumDrillRecipes);
-
-        List<CaloriteDrillRecipe> caloriteDrillRecipes = recipeManager.getAllRecipesFor(CaloriteDrillRecipe.Type.INSTANCE);
-        registration.addRecipes(CaloriteDrillRecipeCategory.CALORITE_DRILL_RECIPE_TYPE, caloriteDrillRecipes);
-
-        List<GlacioDrillRecipe> glacioDrillRecipes = recipeManager.getAllRecipesFor(GlacioDrillRecipe.Type.INSTANCE);
-        registration.addRecipes(GlacioDrillRecipeCategory.GLACIO_DRILL_RECIPE_TYPE, glacioDrillRecipes);
-
-        List<T1RocketAssemblerRecipe> t1RocketAssemblerRecipes = recipeManager.getAllRecipesFor(T1RocketAssemblerRecipe.Type.INSTANCE);
-        registration.addRecipes(T1RocketAssemblerRecipeCategory.T1_ROCKET_ASSEMBLER_RECIPE_TYPE, t1RocketAssemblerRecipes);
-
-        List<T2RocketAssemblerRecipe> t2RocketAssemblerRecipes = recipeManager.getAllRecipesFor(T2RocketAssemblerRecipe.Type.INSTANCE);
-        registration.addRecipes(T2RocketAssemblerRecipeCategory.T2_ROCKET_ASSEMBLER_RECIPE_TYPE, t2RocketAssemblerRecipes);
-
-        List<T3RocketAssemblerRecipe> t3RocketAssemblerRecipes = recipeManager.getAllRecipesFor(T3RocketAssemblerRecipe.Type.INSTANCE);
-        registration.addRecipes(T3RocketAssemblerRecipeCategory.T3_ROCKET_ASSEMBLER_RECIPE_TYPE, t3RocketAssemblerRecipes);
-
-        List<T4RocketAssemblerRecipe> t4RocketAssemblerRecipes = recipeManager.getAllRecipesFor(T4RocketAssemblerRecipe.Type.INSTANCE);
-        registration.addRecipes(T4RocketAssemblerRecipeCategory.T4_ROCKET_ASSEMBLER_RECIPE_TYPE, t4RocketAssemblerRecipes);
-
-        List<T5RocketAssemblerRecipe> t5RocketAssemblerRecipes = recipeManager.getAllRecipesFor(T5RocketAssemblerRecipe.Type.INSTANCE);
-        registration.addRecipes(T5RocketAssemblerRecipeCategory.T5_ROCKET_ASSEMBLER_RECIPE_TYPE, t5RocketAssemblerRecipes);
+        List<RocketAssemblerRecipe> rocketAssemblerRecipes = recipeManager.getAllRecipesFor(RocketAssemblerRecipe.Type.INSTANCE);
+        registration.addRecipes(RocketAssemblerRecipeCategory.ROCKET_ASSEMBLER_RECIPE_TYPE, rocketAssemblerRecipes);
 
         List<TransmutationConstructorRecipe> transmutationConstructorRecipes = recipeManager.getAllRecipesFor(TransmutationConstructorRecipe.Type.INSTANCE);
         registration.addRecipes(TransmutationConstructorRecipeCategory.TRANSMUTATION_CONSTRUCTOR_RECIPE_TYPE, transmutationConstructorRecipes);
@@ -92,24 +61,28 @@ public class JEIPlugin implements IModPlugin {
         List<SkyblockBuilderRecipe> skyblockBuilderRecipes = recipeManager.getAllRecipesFor(SkyblockBuilderRecipe.Type.INSTANCE);
         registration.addRecipes(SkyblockBuilderRecipeCategory.SKYBLOCK_BUILDER_RECIPE_TYPE, skyblockBuilderRecipes);
 
+        List<ContainedSpaceStationRecipe> containedSpaceStationRecipes = recipeManager.getAllRecipesFor(ContainedSpaceStationRecipe.Type.INSTANCE);
+        registration.addRecipes(ContainedSpaceStationRecipeCategory.CONTAINED_SPACE_STATION_RECIPE_TYPE, containedSpaceStationRecipes);
+
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.FUEL_DISTILLERY_CONTROLLER.get()), FuelDistilleryRecipeCategory.FUEL_DISTILLERY_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.STEEL_DRILL_CONTROLLER.get()), SteelDrillRecipeCategory.STEEL_DRILL_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.DESH_DRILL_CONTROLLER.get()), DeshDrillRecipeCategory.DESH_DRILL_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.OSTRUM_DRILL_CONTROLLER.get()), OstrumDrillRecipeCategory.OSTRUM_DRILL_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CALORITE_DRILL_CONTROLLER.get()), CaloriteDrillRecipeCategory.CALORITE_DRILL_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.GLACIO_DRILL_CONTROLLER.get()), GlacioDrillRecipeCategory.GLACIO_DRILL_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T1_ROCKET_ASSEMBLER_CONTROLLER.get()), T1RocketAssemblerRecipeCategory.T1_ROCKET_ASSEMBLER_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T2_ROCKET_ASSEMBLER_CONTROLLER.get()), T2RocketAssemblerRecipeCategory.T2_ROCKET_ASSEMBLER_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T3_ROCKET_ASSEMBLER_CONTROLLER.get()), T3RocketAssemblerRecipeCategory.T3_ROCKET_ASSEMBLER_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T4_ROCKET_ASSEMBLER_CONTROLLER.get()), T4RocketAssemblerRecipeCategory.T4_ROCKET_ASSEMBLER_RECIPE_TYPE);
-        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T5_ROCKET_ASSEMBLER_CONTROLLER.get()), T5RocketAssemblerRecipeCategory.T5_ROCKET_ASSEMBLER_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.STEEL_DRILL_CONTROLLER.get()), PlanetaryDrillRecipeCategory.PLANETARY_DRILL_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.DESH_DRILL_CONTROLLER.get()), PlanetaryDrillRecipeCategory.PLANETARY_DRILL_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.OSTRUM_DRILL_CONTROLLER.get()), PlanetaryDrillRecipeCategory.PLANETARY_DRILL_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CALORITE_DRILL_CONTROLLER.get()), PlanetaryDrillRecipeCategory.PLANETARY_DRILL_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.GLACIO_DRILL_CONTROLLER.get()), PlanetaryDrillRecipeCategory.PLANETARY_DRILL_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T1_ROCKET_ASSEMBLER_CONTROLLER.get()), RocketAssemblerRecipeCategory.ROCKET_ASSEMBLER_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T2_ROCKET_ASSEMBLER_CONTROLLER.get()), RocketAssemblerRecipeCategory.ROCKET_ASSEMBLER_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T3_ROCKET_ASSEMBLER_CONTROLLER.get()), RocketAssemblerRecipeCategory.ROCKET_ASSEMBLER_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T4_ROCKET_ASSEMBLER_CONTROLLER.get()), RocketAssemblerRecipeCategory.ROCKET_ASSEMBLER_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.T5_ROCKET_ASSEMBLER_CONTROLLER.get()), RocketAssemblerRecipeCategory.ROCKET_ASSEMBLER_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.TRANSMUTATION_CONSTRUCTOR_CONTROLLER.get()), TransmutationConstructorRecipeCategory.TRANSMUTATION_CONSTRUCTOR_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get()), SkyblockBuilderRecipeCategory.SKYBLOCK_BUILDER_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.RITUAL_SITE_CONTROLLER.get()), RitualSiteRecipeCategory.RITUAL_SITE_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.PRINTER_3D_CONTROLLER.get()), Printer3DRecipeCategory.PRINTER_3D_RECIPE_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CONTAINED_SPACE_STATION_CONTROLLER.get()), ContainedSpaceStationRecipeCategory.CONTAINED_SPACE_STATION_RECIPE_TYPE);
     }
 }

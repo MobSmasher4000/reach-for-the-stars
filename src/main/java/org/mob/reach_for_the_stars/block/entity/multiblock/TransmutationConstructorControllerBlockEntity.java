@@ -116,31 +116,22 @@ public class TransmutationConstructorControllerBlockEntity extends BlockEntity i
     private void linkHatches(Level level, BlockPos controllerPos, MultiblockPattern.MatchResult result) {
         unlinkHatches(level);
 
-        // 'M' is Item Input Hatch
-        for (BlockPos targetPos : result.getPositions('M')) {
-            if (level.getBlockEntity(targetPos) instanceof ItemInputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.itemInputHatches.add(targetPos);
-            }
-        }
+        // Iterate through all matched positions in the multiblock
+        for (List<BlockPos> positions : result.getMatchedBlocks().values()) {
+            for (BlockPos targetPos : positions) {
+                BlockEntity be = level.getBlockEntity(targetPos);
 
-        // 'L' is Item Output Hatch
-        for (BlockPos targetPos : result.getPositions('L')) {
-            if (level.getBlockEntity(targetPos) instanceof ItemOutputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.itemOutputHatches.add(targetPos);
+                if (be instanceof ItemInputHatchBlockEntity){
+                    this.itemInputHatches.add(targetPos);
+                }
+                else if (be instanceof ItemOutputHatchBlockEntity) {
+                    this.itemOutputHatches.add(targetPos);
+                }
             }
         }
     }
 
     private void unlinkHatches(Level level) {
-        for (BlockPos targetPos : itemInputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof ItemInputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-        for (BlockPos targetPos : itemOutputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof ItemOutputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-
         this.itemInputHatches.clear();
         this.itemOutputHatches.clear();
     }
@@ -244,7 +235,7 @@ public class TransmutationConstructorControllerBlockEntity extends BlockEntity i
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.reach_for_the_stars.tansmutation_constructor_controller");
+        return Component.translatable("block.reach_for_the_stars.transmutation_constructor_controller");
     }
 
     @Nullable

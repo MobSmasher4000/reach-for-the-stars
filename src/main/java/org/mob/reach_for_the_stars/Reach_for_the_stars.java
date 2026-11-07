@@ -13,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.mob.reach_for_the_stars.block.ModBlocks;
+import org.mob.reach_for_the_stars.block.custom.multiblock.MultiblockPatterns;
 import org.mob.reach_for_the_stars.block.entity.ModBlockEntities;
 import org.mob.reach_for_the_stars.fluid.ModFluids;
 import org.mob.reach_for_the_stars.item.ModItems;
@@ -27,7 +28,7 @@ import org.slf4j.Logger;
 public class Reach_for_the_stars {
 
     public static final String MOD_ID = "reach_for_the_stars";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public Reach_for_the_stars() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -50,6 +51,7 @@ public class Reach_for_the_stars {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(MultiblockPatterns::init);
     }
 
     @SubscribeEvent

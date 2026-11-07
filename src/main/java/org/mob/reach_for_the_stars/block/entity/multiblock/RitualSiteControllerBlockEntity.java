@@ -23,6 +23,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.mob.reach_for_the_stars.block.custom.multiblock.MultiblockPatterns;
 import org.mob.reach_for_the_stars.block.custom.multiblock.RitualSiteControllerBlock;
 import org.mob.reach_for_the_stars.block.entity.ModBlockEntities;
+import org.mob.reach_for_the_stars.block.entity.hatch.EnergyInputHatchBlockEntity;
+import org.mob.reach_for_the_stars.block.entity.hatch.FluidInputHatchBlockEntity;
 import org.mob.reach_for_the_stars.block.entity.hatch.ItemInputHatchBlockEntity;
 import org.mob.reach_for_the_stars.block.entity.hatch.ItemOutputHatchBlockEntity;
 import org.mob.reach_for_the_stars.recipe.RitualSiteRecipe;
@@ -116,31 +118,22 @@ public class RitualSiteControllerBlockEntity extends BlockEntity implements Menu
     private void linkHatches(Level level, BlockPos controllerPos, MultiblockPattern.MatchResult result) {
         unlinkHatches(level);
 
-        // 'M' is Item Input Hatch
-        for (BlockPos targetPos : result.getPositions('M')) {
-            if (level.getBlockEntity(targetPos) instanceof ItemInputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.itemInputHatches.add(targetPos);
-            }
-        }
+        // Iterate through all matched positions in the multiblock
+        for (List<BlockPos> positions : result.getMatchedBlocks().values()) {
+            for (BlockPos targetPos : positions) {
+                BlockEntity be = level.getBlockEntity(targetPos);
 
-        // 'L' is Item Output Hatch
-        for (BlockPos targetPos : result.getPositions('L')) {
-            if (level.getBlockEntity(targetPos) instanceof ItemOutputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.itemOutputHatches.add(targetPos);
+                if (be instanceof ItemInputHatchBlockEntity itemInputHatch){
+                    this.itemInputHatches.add(targetPos);
+                }
+                else if (be instanceof ItemOutputHatchBlockEntity itemHatch) {
+                    this.itemOutputHatches.add(targetPos);
+                }
             }
         }
     }
 
     private void unlinkHatches(Level level) {
-        for (BlockPos targetPos : itemInputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof ItemInputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-        for (BlockPos targetPos : itemOutputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof ItemOutputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-
         this.itemInputHatches.clear();
         this.itemOutputHatches.clear();
     }

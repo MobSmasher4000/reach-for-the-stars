@@ -40,6 +40,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.PRINTER_3D_CONTROLLER.get())
                 .add(ModBlocks.SKYBLOCK_BUILDER_CONTROLLER.get())
                 .add(ModBlocks.COMPLETION_TROPHY.get())
+                .add(ModBlocks.CONTAINED_SPACE_STATION_CONTROLLER.get())
         ;
     }
 }

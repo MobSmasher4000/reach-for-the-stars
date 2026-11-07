@@ -28,20 +28,13 @@ public class ModClientEvents {
     @SubscribeEvent
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
         BlockEntityRenderers.register(ModBlockEntities.FUEL_DISTILLERY_CONTROLLER_BE.get(), FuelDistilleryControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.STEEL_DRILL_CONTROLLER_BE.get(), SteelDrillControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.DESH_DRILL_CONTROLLER_BE.get(), DeshDrillControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.OSTRUM_DRILL_CONTROLLER_BE.get(), OstrumDrillControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.CALORITE_DRILL_CONTROLLER_BE.get(), CaloriteDrillControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.GLACIO_DRILL_CONTROLLER_BE.get(), GlacioDrillControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.T1_ROCKET_ASSEMBLER_CONTROLLER_BE.get(), T1RocketAssemblerControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.T2_ROCKET_ASSEMBLER_CONTROLLER_BE.get(), T2RocketAssemblerControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.T3_ROCKET_ASSEMBLER_CONTROLLER_BE.get(), T3RocketAssemblerControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.T4_ROCKET_ASSEMBLER_CONTROLLER_BE.get(), T4RocketAssemblerControllerRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.T5_ROCKET_ASSEMBLER_CONTROLLER_BE.get(), T5RocketAssemblerControllerRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.PLANETARY_DRILL_CONTROLLER_BE.get(), PlanetaryDrillControllerRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.ROCKET_ASSEMBLER_CONTROLLER_BE.get(), RocketAssemblerControllerRenderer::new);
         BlockEntityRenderers.register(ModBlockEntities.TRANSMUTATION_CONSTRUCTOR_CONTROLLER_BE.get(), TransmutationConstructorControllerRenderer::new);
         BlockEntityRenderers.register(ModBlockEntities.SKYBLOCK_BUILDER_CONTROLLER_BE.get(), SkyblockBuilderControllerRenderer::new);
         BlockEntityRenderers.register(ModBlockEntities.RITUAL_SITE_CONTROLLER_BE.get(), RitualSiteControllerRenderer::new);
         BlockEntityRenderers.register(ModBlockEntities.PRINTER_3D_CONTROLLER_BE.get(), Printer3DControllerRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.CONTAINED_SPACE_STATION_CONTROLLER_BE.get(), ContainedSpaceStationControllerRenderer::new);
     }
 
     @SubscribeEvent
@@ -51,20 +44,13 @@ public class ModClientEvents {
         MenuScreens.register(ModMenuTypes.FLUID_INPUT_HATCH_MENU.get(), FluidInputHatchScreen::new);
         MenuScreens.register(ModMenuTypes.ITEM_INPUT_HATCH_MENU.get(), ItemInputHatchScreen::new);
         MenuScreens.register(ModMenuTypes.FUEL_DISTILLERY_MENU.get(), FuelDistilleryControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.STEEL_DRILL_MENU.get(), SteelDrillControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.DESH_DRILL_MENU.get(), DeshDrillControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.OSTRUM_DRILL_MENU.get(), OstrumDrillControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.CALORITE_DRILL_MENU.get(), CaloriteDrillControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.GLACIO_DRILL_MENU.get(), GlacioDrillControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.T1_ROCKET_ASSEMBLER_MENU.get(), T1RocketAssemblerControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.T2_ROCKET_ASSEMBLER_MENU.get(), T2RocketAssemblerControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.T3_ROCKET_ASSEMBLER_MENU.get(), T3RocketAssemblerControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.T4_ROCKET_ASSEMBLER_MENU.get(), T4RocketAssemblerControllerScreen::new);
-        MenuScreens.register(ModMenuTypes.T5_ROCKET_ASSEMBLER_MENU.get(), T5RocketAssemblerControllerScreen::new);
+        MenuScreens.register(ModMenuTypes.PLANETARY_DRILL_MENU.get(), PlanetaryDrillControllerScreen::new);
+        MenuScreens.register(ModMenuTypes.ROCKET_ASSEMBLER_MENU.get(), RocketAssemblerControllerScreen::new);
         MenuScreens.register(ModMenuTypes.PRINTER_3D_MENU.get(), Printer3DControllerScreen::new);
         MenuScreens.register(ModMenuTypes.TRANSMUTATION_CONSTRUCTOR_MENU.get(), TransmutationConstructorControllerScreen::new);
         MenuScreens.register(ModMenuTypes.RITUAL_SITE_MENU.get(), RitualSiteControllerScreen::new);
         MenuScreens.register(ModMenuTypes.SKYBLOCK_BUILDER_MENU.get(), SkyblockBuilderControllerScreen::new);
+        MenuScreens.register(ModMenuTypes.CONTAINED_SPACE_STATION_MENU.get(), ContainedSpaceStationControllerScreen::new);
 
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_STEEL_DRILL_FLUID.get(), RenderType.translucent());
@@ -82,7 +68,7 @@ public class ModClientEvents {
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_GLACIO_DRILL_FLUID.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_GLACIO_DRILL_FLUID.get(), RenderType.translucent());
 
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.COMPLETION_TROPHY.get(), RenderType.cutout());
+//            ItemBlockRenderTypes.setRenderLayer(ModBlocks.COMPLETION_TROPHY.get(), RenderType.cutout());
         });
     }
 

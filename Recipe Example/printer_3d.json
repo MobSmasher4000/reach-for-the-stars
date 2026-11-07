@@ -1,9 +1,15 @@
 {
   "type": "reach_for_the_stars:printer_3d",
-  "fluid": {
+  "fluids": [
+    {
     "amount": 100,
     "fluid": "immersiveengineering:biodiesel"
   },
+    {
+      "amount": 100,
+      "fluid": "immersiveengineering:biodiesel"
+    }
+  ],
   "ingredients": [
     {
       "count": 1,

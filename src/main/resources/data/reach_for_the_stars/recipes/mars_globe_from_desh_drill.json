@@ -1,5 +1,6 @@
 {
-    "type": "reach_for_the_stars:desh_drill",
+    "type": "reach_for_the_stars:planetary_drill",
+    "machine": "reach_for_the_stars:desh_drill_controller",
     "fluid": {
         "amount": 1000,
         "fluid": "reach_for_the_stars:desh_drill_fluid"

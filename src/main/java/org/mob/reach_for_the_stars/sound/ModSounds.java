@@ -14,9 +14,10 @@ public class ModSounds {
 
 
     public static final RegistryObject<SoundEvent> STELLAR_ODYSSEY = registerSoundEvents("stellar_odyssey");
+    public static final RegistryObject<SoundEvent> PACK_COMPLETION = registerSoundEvents("pack_completion");
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
-        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(Reach_for_the_stars.MOD_ID, name)));
+        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Reach_for_the_stars.MOD_ID, name)));
     }
 
     public static void register(IEventBus eventBus) {

@@ -3,7 +3,6 @@ package org.mob.reach_for_the_stars.block.entity.hatch;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -52,25 +51,12 @@ public class FluidOutputHatchBlockEntity extends BlockEntity implements MenuProv
         @Override public @NotNull FluidStack drain(int maxDrain, FluidAction action) { return fluidTank.drain(maxDrain, action); }
     });
 
-    // Controller Block position
-    private BlockPos controllerPos = null;
-
     public FluidOutputHatchBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.FLUID_OUTPUT_HATCH_BE.get(), pPos, pBlockState);
     }
 
     public FluidTank getInternalTank() {
         return this.fluidTank;
-    }
-
-    public void setControllerPos(@Nullable BlockPos pos) {
-        this.controllerPos = pos;
-        setChanged();
-    }
-
-    @Nullable
-    public BlockPos getControllerPos() {
-        return this.controllerPos;
     }
 
     @Override
@@ -91,10 +77,6 @@ public class FluidOutputHatchBlockEntity extends BlockEntity implements MenuProv
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.put("FluidData", fluidTank.writeToNBT(new CompoundTag()));
-
-        if (this.controllerPos != null) {
-            pTag.put("ControllerPos", NbtUtils.writeBlockPos(this.controllerPos));
-        }
     }
 
     @Override
@@ -102,12 +84,6 @@ public class FluidOutputHatchBlockEntity extends BlockEntity implements MenuProv
         super.load(pTag);
         if (pTag.contains("FluidData")) {
             fluidTank.readFromNBT(pTag.getCompound("FluidData"));
-        }
-
-        if (pTag.contains("ControllerPos")) {
-            this.controllerPos = NbtUtils.readBlockPos(pTag.getCompound("ControllerPos"));
-        } else {
-            this.controllerPos = null;
         }
     }
 

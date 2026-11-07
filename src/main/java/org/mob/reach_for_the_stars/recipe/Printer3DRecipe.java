@@ -24,21 +24,21 @@ import static org.mob.reach_for_the_stars.Reach_for_the_stars.resourceLocation;
 
 public class Printer3DRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
-    private final FluidStack fluidInput;
+    private final NonNullList<FluidStack> fluidInputs;
     private final NonNullList<Ingredient> inputs;
     private final List<Integer> inputCounts;
     private final ItemStack output;
 
-    public Printer3DRecipe(ResourceLocation id, FluidStack fluidInput, NonNullList<Ingredient> inputs, List<Integer> inputCounts, ItemStack output) {
+    public Printer3DRecipe(ResourceLocation id, NonNullList<FluidStack> fluidInputs, NonNullList<Ingredient> inputs, List<Integer> inputCounts, ItemStack output) {
         this.id = id;
-        this.fluidInput = fluidInput;
+        this.fluidInputs = fluidInputs;
         this.inputs = inputs;
         this.inputCounts = inputCounts;
         this.output = output;
     }
 
-    public FluidStack getFluidInput() {
-        return this.fluidInput;
+    public NonNullList<FluidStack> getFluidInputs() {
+        return this.fluidInputs;
     }
 
     public NonNullList<Ingredient> getIngredientsList() {
@@ -75,16 +75,16 @@ public class Printer3DRecipe implements Recipe<SimpleContainer> {
 
                 ItemStack stack = container.getItem(slot);
 
-                // If this slot has the right item, and hasn't been completely used up yet
+                // If this slot has the right item and hasn't been completely used up yet
                 if (!stack.isEmpty() && availableCounts[slot] > 0 && ingredient.test(stack)) {
-                    // Take however much we need, up to the amount left in the slot
+                    // Take however much need, up to the amount left in the slot
                     int take = Math.min(availableCounts[slot], remainingNeeded);
                     availableCounts[slot] -= take;
                     remainingNeeded -= take;
                 }
             }
 
-            // If we checked every slot and STILL need more of this ingredient, the recipe fails
+            // If checked every slot and still need more of this ingredient, the recipe fails
             if (remainingNeeded > 0) {
                 return false;
             }
@@ -134,12 +134,17 @@ public class Printer3DRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public Printer3DRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            // Read Fluid
-            JsonObject fluidObj = GsonHelper.getAsJsonObject(json, "fluid");
-            ResourceLocation fluidRes = ResourceLocation.parse(GsonHelper.getAsString(fluidObj, "fluid"));
-            Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidRes);
-            int amount = GsonHelper.getAsInt(fluidObj, "amount");
-            FluidStack fluidInput = new FluidStack(fluid, amount);
+
+            // Read Fluids
+            JsonArray fluidsJson = GsonHelper.getAsJsonArray(json, "fluids");
+            NonNullList<FluidStack> fluidInputs = NonNullList.create();
+            for (JsonElement element : fluidsJson) {
+                JsonObject fluidObj = element.getAsJsonObject();
+                ResourceLocation fluidRes = ResourceLocation.parse(GsonHelper.getAsString(fluidObj, "fluid"));
+                Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidRes);
+                int amount = GsonHelper.getAsInt(fluidObj, "amount");
+                fluidInputs.add(new FluidStack(fluid, amount));
+            }
 
             // Read Ingredients
             JsonArray ingredientsJson = GsonHelper.getAsJsonArray(json, "ingredients");
@@ -157,12 +162,16 @@ public class Printer3DRecipe implements Recipe<SimpleContainer> {
             // Read Result
             ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
-            return new Printer3DRecipe(recipeId, fluidInput, inputs, counts, result);
+            return new Printer3DRecipe(recipeId, fluidInputs, inputs, counts, result);
         }
 
         @Override
         public @Nullable Printer3DRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
-            FluidStack fluidInput = FluidStack.readFromPacket(buffer);
+            int fluidCount = buffer.readVarInt();
+            NonNullList<FluidStack> fluidInputs = NonNullList.withSize(fluidCount, FluidStack.EMPTY);
+            for (int i = 0; i < fluidCount; i++) {
+                fluidInputs.set(i, FluidStack.readFromPacket(buffer));
+            }
 
             int size = buffer.readVarInt();
             NonNullList<Ingredient> inputs = NonNullList.withSize(size, Ingredient.EMPTY);
@@ -172,13 +181,16 @@ public class Printer3DRecipe implements Recipe<SimpleContainer> {
                 counts.add(buffer.readVarInt());
             }
             ItemStack output = buffer.readItem();
-            
-            return new Printer3DRecipe(recipeId, fluidInput, inputs, counts, output);
+
+            return new Printer3DRecipe(recipeId, fluidInputs, inputs, counts, output);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, Printer3DRecipe recipe) {
-            recipe.getFluidInput().writeToPacket(buffer);
+            buffer.writeVarInt(recipe.getFluidInputs().size());
+            for (FluidStack fluidStack : recipe.getFluidInputs()) {
+                fluidStack.writeToPacket(buffer);
+            }
 
             buffer.writeVarInt(recipe.getIngredientsList().size());
             for (int i = 0; i < recipe.getIngredientsList().size(); i++) {

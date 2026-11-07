@@ -13,6 +13,7 @@
 
 
   "block.reach_for_the_stars.completion_trophy": "Completion Trophy",
+  "sounds.reach_for_the_stars.pack_completion": "Completion Jingle",
 
   "block.reach_for_the_stars.fuel_distillery_controller": "Fuel Distillery",
 
@@ -32,6 +33,7 @@
   "block.reach_for_the_stars.transmutation_constructor_controller": "Transmutation Constructor",
   "block.reach_for_the_stars.skyblock_builder_controller": "Skyblock Builder",
   "block.reach_for_the_stars.ritual_site_controller": "Ritual Site",
+  "block.reach_for_the_stars.contained_space_station_controller": "Contained Space Station",
 
   "item.reach_for_the_stars.rfts" : "REACH FOR THE STARS",
   "item.reach_for_the_stars.mars_clay" : "Mars Clay",
@@ -39,7 +41,6 @@
   "item.reach_for_the_stars.exclamation_mark" : "Exclamation Mark",
 
   "item.reach_for_the_stars.winner_planet" : "Winner Planet",
-  "tooltip.reach_for_the_stars.winner_planet" : "Planet awarded to the 3 players who reached the mars first.",
 
   "item.reach_for_the_stars.blank_mold" : "Blank Mold",
   "item.reach_for_the_stars.rocket_fin_mold" : "Rocket Fin Mold",
@@ -95,5 +96,7 @@
 
 
   "tooltip.reach_for_the_stars.auto_build": "Hold Shift while placing the controller to auto build the multiblock.",
-  "tooltip.reach_for_the_stars.t3_rocket_assembler_warning": "Energizing Rods may break and drop on ground when auto-placing, just put those back on the correct tier cable."
+  "tooltip.reach_for_the_stars.t3_rocket_assembler_warning": "Energizing Rods may break and drop on ground when auto-placing, just put those back on the correct tier cable.",
+  "category.reach_for_the_stars.planetary_drill": "Planetary drills",
+  "category.reach_for_the_stars.rocket_assembler": "Rocket Assemblers"
 }

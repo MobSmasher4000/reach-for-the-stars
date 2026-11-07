@@ -1,0 +1,13 @@
+{
+    "type": "reach_for_the_stars:planetary_drill",
+    "machine": "reach_for_the_stars:glacio_drill_controller",
+    "fluid": {
+        "amount": 1000,
+        "fluid": "reach_for_the_stars:glacio_drill_fluid"
+    },
+    "dimension": "ad_astra:mars",
+    "result": {
+        "count": 1,
+        "item": "ad_astra:glacio_globe"
+    }
+}

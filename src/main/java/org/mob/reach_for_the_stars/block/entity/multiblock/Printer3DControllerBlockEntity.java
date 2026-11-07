@@ -17,9 +17,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
 import org.mob.reach_for_the_stars.block.custom.multiblock.MultiblockPatterns;
 import org.mob.reach_for_the_stars.block.custom.multiblock.Printer3DControllerBlock;
 import org.mob.reach_for_the_stars.block.entity.ModBlockEntities;
@@ -45,11 +47,10 @@ public class Printer3DControllerBlockEntity extends BlockEntity implements MenuP
     private int MAX_PROGRESS = 12000; // 10 min
     private final int ENERGY_PER_TICK = 100;
 
-    // Cached Hatch Locations
-    private final List<BlockPos> itemInputHatches = new ArrayList<>();
-    private final List<BlockPos> itemOutputHatches = new ArrayList<>();
-    private final List<BlockPos> energyInputHatches = new ArrayList<>();
-    private final List<BlockPos> fluidInputHatches = new ArrayList<>();
+    private final List<IItemHandler> itemInputHatches = new ArrayList<>();
+    private final List<IItemHandler> itemOutputHatches = new ArrayList<>();
+    private final List<IEnergyStorage> energyInputHatches = new ArrayList<>();
+    private final List<IFluidHandler> fluidInputHatches = new ArrayList<>();
 
     public Printer3DControllerBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.PRINTER_3D_CONTROLLER_BE.get(), pPos, pBlockState);
@@ -103,11 +104,9 @@ public class Printer3DControllerBlockEntity extends BlockEntity implements MenuP
             if (!wasFormed) {
                 level.setBlock(pos, state.setValue(Printer3DControllerBlock.FORMED, true), 3);
             }
-
-            if (this.itemInputHatches.isEmpty() || this.itemOutputHatches.isEmpty() || this.energyInputHatches.isEmpty() || this.fluidInputHatches.isEmpty()) {
+            if (this.itemInputHatches.isEmpty() && this.itemOutputHatches.isEmpty()) {
                 linkHatches(level, pos, result);
             }
-
         } else {
             if (wasFormed) {
                 level.setBlock(pos, state.setValue(Printer3DControllerBlock.FORMED, false), 3);
@@ -121,88 +120,113 @@ public class Printer3DControllerBlockEntity extends BlockEntity implements MenuP
     private void linkHatches(Level level, BlockPos controllerPos, MultiblockPattern.MatchResult result) {
         unlinkHatches(level);
 
-        // 'r' is Item Input Hatch
-        for (BlockPos targetPos : result.getPositions('r')) {
-            if (level.getBlockEntity(targetPos) instanceof ItemInputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.itemInputHatches.add(targetPos);
-            }
-        }
+        // Dynamically find capabilities across the entire machine structure!
+        for (List<BlockPos> positions : result.getMatchedBlocks().values()) {
+            for (BlockPos targetPos : positions) {
+                BlockEntity be = level.getBlockEntity(targetPos);
+                if (be == null) continue;
 
-        // 's' is Item Output Hatch
-        for (BlockPos targetPos : result.getPositions('s')) {
-            if (level.getBlockEntity(targetPos) instanceof ItemOutputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.itemOutputHatches.add(targetPos);
-            }
-        }
-
-        // 'o' is Energy Input Hatch
-        for (BlockPos targetPos : result.getPositions('o')) {
-            if (level.getBlockEntity(targetPos) instanceof EnergyInputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.energyInputHatches.add(targetPos);
-            }
-        }
-
-        // 'h' is Fluid Input Hatch
-        for (BlockPos targetPos : result.getPositions('h')) {
-            if (level.getBlockEntity(targetPos) instanceof FluidInputHatchBlockEntity hatch) {
-                hatch.setControllerPos(controllerPos);
-                this.fluidInputHatches.add(targetPos);
+                if (be instanceof ItemInputHatchBlockEntity) {
+                    be.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemInputHatches::add);
+                } else if (be instanceof ItemOutputHatchBlockEntity) {
+                    be.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemOutputHatches::add);
+                } else if (be instanceof FluidInputHatchBlockEntity) {
+                    be.getCapability(ForgeCapabilities.FLUID_HANDLER).ifPresent(fluidInputHatches::add);
+                } else if (be instanceof EnergyInputHatchBlockEntity) {
+                    be.getCapability(ForgeCapabilities.ENERGY).ifPresent(energyInputHatches::add);
+                }
             }
         }
     }
 
     private void unlinkHatches(Level level) {
-        for (BlockPos targetPos : itemInputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof ItemInputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-        for (BlockPos targetPos : itemOutputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof ItemOutputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-        for (BlockPos targetPos : energyInputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof EnergyInputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-        for (BlockPos targetPos : fluidInputHatches) {
-            if (level.getBlockEntity(targetPos) instanceof FluidInputHatchBlockEntity hatch) hatch.setControllerPos(null);
-        }
-
         this.itemInputHatches.clear();
         this.itemOutputHatches.clear();
         this.energyInputHatches.clear();
         this.fluidInputHatches.clear();
     }
 
-    private Optional<Printer3DRecipe> getRecipe(SimpleContainer container, Level level) {
+    private SimpleContainer getAggregatedItemInventory() {
+        List<ItemStack> allItems = new ArrayList<>();
+        for (IItemHandler handler : itemInputHatches) {
+            for (int i = 0; i < handler.getSlots(); i++) {
+                ItemStack stack = handler.getStackInSlot(i);
+                if (!stack.isEmpty()) allItems.add(stack);
+            }
+        }
+        SimpleContainer container = new SimpleContainer(allItems.size());
+        for (int i = 0; i < allItems.size(); i++) {
+            container.setItem(i, allItems.get(i));
+        }
+        return container;
+    }
+
+    private boolean hasEnoughFluid(FluidStack required) {
+        int totalFound = 0;
+        for (IFluidHandler hatch : this.fluidInputHatches) {
+            FluidStack simulated = hatch.drain(new FluidStack(required.getFluid(), required.getAmount() - totalFound), IFluidHandler.FluidAction.SIMULATE);
+            if (!simulated.isEmpty()) totalFound += simulated.getAmount();
+            if (totalFound >= required.getAmount()) return true;
+        }
+        return false;
+    }
+
+    private void consumeFluid(FluidStack required) {
+        int remaining = required.getAmount();
+        for (IFluidHandler hatch : this.fluidInputHatches) {
+            if (remaining <= 0) break;
+            FluidStack drained = hatch.drain(new FluidStack(required.getFluid(), remaining), IFluidHandler.FluidAction.EXECUTE);
+            if (!drained.isEmpty()) remaining -= drained.getAmount();
+        }
+    }
+
+    private boolean tryExtractEnergy(int amount, boolean simulate) {
+        int extractedTotal = 0;
+        for (IEnergyStorage storage : energyInputHatches) {
+            extractedTotal += storage.extractEnergy(amount - extractedTotal, true); // Simulate first
+            if (extractedTotal >= amount) break;
+        }
+
+        if (extractedTotal < amount) return false; // Not enough power
+
+        if (!simulate) {
+            int remainingToExtract = amount;
+            for (IEnergyStorage storage : energyInputHatches) {
+                if (remainingToExtract <= 0) break;
+                remainingToExtract -= storage.extractEnergy(remainingToExtract, false);
+            }
+        }
+        return true;
+    }
+
+    private boolean tryInsertOutput(ItemStack output, boolean simulate) {
+        ItemStack remaining = output.copy();
+        for (IItemHandler handler : itemOutputHatches) {
+            remaining = ItemHandlerHelper.insertItem(handler, remaining, simulate);
+            if (remaining.isEmpty()) return true;
+        }
+        return false;
+    }
+
+
+    private Optional<Printer3DRecipe> getRecipe(Level level) {
+        SimpleContainer container = getAggregatedItemInventory();
         if (container.isEmpty()) return Optional.empty();
-        return level.getRecipeManager().getRecipeFor(Printer3DRecipe.Type.INSTANCE, container, level);
+
+        return level.getRecipeManager().getRecipeFor(Printer3DRecipe.Type.INSTANCE, container, level).filter(recipe -> {
+            for (FluidStack req : recipe.getFluidInputs()) {
+                if (!hasEnoughFluid(req)) return false;
+            }
+            return true;
+        });
     }
 
     private void processRecipe(Level level) {
         if (itemInputHatches.isEmpty() || itemOutputHatches.isEmpty() || energyInputHatches.isEmpty() || fluidInputHatches.isEmpty()) return;
 
-        ItemInputHatchBlockEntity inputBe = (ItemInputHatchBlockEntity) level.getBlockEntity(itemInputHatches.get(0));
-        ItemOutputHatchBlockEntity itemOutBE = (ItemOutputHatchBlockEntity) level.getBlockEntity(itemOutputHatches.get(0));
-        EnergyInputHatchBlockEntity energyIn = (EnergyInputHatchBlockEntity) level.getBlockEntity(energyInputHatches.get(0));
-        FluidInputHatchBlockEntity fluidIn = (FluidInputHatchBlockEntity) level.getBlockEntity(fluidInputHatches.get(0));
+        Optional<Printer3DRecipe> match = getRecipe(level);
 
-        if (inputBe == null || itemOutBE == null || energyIn == null || fluidIn == null) return;
-
-        ItemStackHandler inventory = itemOutBE.getInternalInventory();
-
-        IItemHandler inputItemHandler = inputBe.getInternalInventory();
-        if (inputItemHandler == null) return;
-
-        SimpleContainer container = new SimpleContainer(inputItemHandler.getSlots());
-        for (int i = 0; i < inputItemHandler.getSlots(); i++) {
-            container.setItem(i, inputItemHandler.getStackInSlot(i));
-        }
-
-        Optional<Printer3DRecipe> match = getRecipe(container, level);
-
-        // Recipe not found OR not enough fluid in the hatch -> stall progress
-        if (match.isEmpty() || fluidIn.getInternalTank().getFluidAmount() < match.get().getFluidInput().getAmount()) {
+        if (match.isEmpty()) {
             this.progress = 0;
             return;
         }
@@ -210,35 +234,31 @@ public class Printer3DControllerBlockEntity extends BlockEntity implements MenuP
         Printer3DRecipe recipe = match.get();
         ItemStack outputResult = recipe.getResultItem(level.registryAccess());
 
-        itemOutBE.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(itemHandler -> {
+        // Check if there is room in the output buses
+        if (!tryInsertOutput(outputResult, true)) return;
 
-            ItemStack remaining = ItemHandlerHelper.insertItem(inventory, outputResult, true);
-            if (!remaining.isEmpty()) return;
+        if (tryExtractEnergy(ENERGY_PER_TICK, false)) {
+            this.progress++;
 
-            // Simulated energy check (preventing power drain on stalled progress)
-            int simulatedEnergy = energyIn.getInternalEnergyStorage().extractEnergy(ENERGY_PER_TICK, true);
-            if (simulatedEnergy == ENERGY_PER_TICK) {
-                energyIn.getInternalEnergyStorage().extractEnergy(ENERGY_PER_TICK, false);
-                this.progress++;
+            if (this.progress >= MAX_PROGRESS) {
+                // Consume Items
+                consumeRecipeIngredients(recipe);
 
-                if (this.progress >= MAX_PROGRESS) {
-                    // Consume items
-                    consumeRecipeIngredients(recipe, inputItemHandler);
-
-                    // Consume fluid
-                    fluidIn.getInternalTank().drain(recipe.getFluidInput().getAmount(), net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE);
-
-                    // Output Result
-                    ItemHandlerHelper.insertItem(inventory, outputResult.copy(), false);
-
-                    this.progress = 0;
-                    setChanged();
+                // Consume Fluids
+                for (FluidStack req : recipe.getFluidInputs()) {
+                    consumeFluid(req);
                 }
+
+                // Output Result
+                tryInsertOutput(outputResult.copy(), false);
+
+                this.progress = 0;
+                setChanged();
             }
-        });
+        }
     }
 
-    private void consumeRecipeIngredients(Printer3DRecipe recipe, IItemHandler inputHandler) {
+    private void consumeRecipeIngredients(Printer3DRecipe recipe) {
         List<Ingredient> ingredients = recipe.getIngredientsList();
         List<Integer> counts = recipe.getInputCounts();
 
@@ -246,15 +266,19 @@ public class Printer3DControllerBlockEntity extends BlockEntity implements MenuP
             Ingredient ingredient = ingredients.get(i);
             int requiredCount = counts.get(i);
 
-            for (int slot = 0; slot < inputHandler.getSlots(); slot++) {
-                if (requiredCount <= 0) break;
+            // Look through every attached input hatch
+            for (IItemHandler inputHandler : itemInputHatches) {
+                for (int slot = 0; slot < inputHandler.getSlots(); slot++) {
+                    if (requiredCount <= 0) break;
 
-                ItemStack stack = inputHandler.getStackInSlot(slot);
-                if (!stack.isEmpty() && ingredient.test(stack)) {
-                    int extractAmount = Math.min(stack.getCount(), requiredCount);
-                    inputHandler.extractItem(slot, extractAmount, false);
-                    requiredCount -= extractAmount;
+                    ItemStack stack = inputHandler.getStackInSlot(slot);
+                    if (!stack.isEmpty() && ingredient.test(stack)) {
+                        int extractAmount = Math.min(stack.getCount(), requiredCount);
+                        inputHandler.extractItem(slot, extractAmount, false);
+                        requiredCount -= extractAmount;
+                    }
                 }
+                if (requiredCount <= 0) break; // Move to next ingredient
             }
         }
     }

@@ -32,37 +32,12 @@ public class ModMenuTypes {
             registerMenuType("fuel_distillery_menu", FuelDistilleryControllerMenu::new);
 
     // drill
-    public static final RegistryObject<MenuType<SteelDrillControllerMenu>> STEEL_DRILL_MENU =
-            registerMenuType("steel_drill_menu", SteelDrillControllerMenu::new);
-
-    public static final RegistryObject<MenuType<DeshDrillControllerMenu>> DESH_DRILL_MENU =
-            registerMenuType("desh_drill_menu", DeshDrillControllerMenu::new);
-
-    public static final RegistryObject<MenuType<OstrumDrillControllerMenu>> OSTRUM_DRILL_MENU =
-            registerMenuType("ostrum_drill_menu", OstrumDrillControllerMenu::new);
-
-    public static final RegistryObject<MenuType<CaloriteDrillControllerMenu>> CALORITE_DRILL_MENU =
-            registerMenuType("calorite_drill_menu", CaloriteDrillControllerMenu::new);
-
-    public static final RegistryObject<MenuType<GlacioDrillControllerMenu>> GLACIO_DRILL_MENU =
-            registerMenuType("glacio_drill_menu", GlacioDrillControllerMenu::new);
-
+    public static final RegistryObject<MenuType<PlanetaryDrillControllerMenu>> PLANETARY_DRILL_MENU =
+            registerMenuType("planetary_drill_menu", PlanetaryDrillControllerMenu::new);
 
     // rocket assembler
-    public static final RegistryObject<MenuType<T1RocketAssemblerControllerMenu>> T1_ROCKET_ASSEMBLER_MENU =
-            registerMenuType("t1_rocket_assembler_menu", T1RocketAssemblerControllerMenu::new);
-
-    public static final RegistryObject<MenuType<T2RocketAssemblerControllerMenu>> T2_ROCKET_ASSEMBLER_MENU =
-            registerMenuType("t2_rocket_assembler_menu", T2RocketAssemblerControllerMenu::new);
-
-    public static final RegistryObject<MenuType<T3RocketAssemblerControllerMenu>> T3_ROCKET_ASSEMBLER_MENU =
-            registerMenuType("t3_rocket_assembler_menu", T3RocketAssemblerControllerMenu::new);
-
-    public static final RegistryObject<MenuType<T4RocketAssemblerControllerMenu>> T4_ROCKET_ASSEMBLER_MENU =
-            registerMenuType("t4_rocket_assembler_menu", T4RocketAssemblerControllerMenu::new);
-
-    public static final RegistryObject<MenuType<T5RocketAssemblerControllerMenu>> T5_ROCKET_ASSEMBLER_MENU =
-            registerMenuType("t5_rocket_assembler_menu", T5RocketAssemblerControllerMenu::new);
+    public static final RegistryObject<MenuType<RocketAssemblerControllerMenu>> ROCKET_ASSEMBLER_MENU =
+            registerMenuType("rocket_assembler_menu", RocketAssemblerControllerMenu::new);
 
     // Special multi
     public static final RegistryObject<MenuType<Printer3DControllerMenu>> PRINTER_3D_MENU =
@@ -76,6 +51,10 @@ public class ModMenuTypes {
 
     public static final RegistryObject<MenuType<SkyblockBuilderControllerMenu>> SKYBLOCK_BUILDER_MENU =
             registerMenuType("skyblock_builder_menu", SkyblockBuilderControllerMenu::new);
+
+    public static final RegistryObject<MenuType<ContainedSpaceStationControllerMenu>> CONTAINED_SPACE_STATION_MENU =
+            registerMenuType("contained_space_station_menu", ContainedSpaceStationControllerMenu::new);
+
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
