@@ -28,10 +28,9 @@ public class ItemInputHatchMenu extends AbstractContainerMenu {
         this.blockEntity = (ItemInputHatchBlockEntity) entity;
         this.level = inv.player.level();
 
-        addHatchSlots(this.blockEntity.getInternalInventory());
-
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
+        addHatchSlots(this.blockEntity.getInternalInventory());
     }
 
     private void addHatchSlots(IItemHandler itemHandler) {

@@ -31,6 +31,9 @@ public class ItemOutputHatchBlockEntity extends BlockEntity implements MenuProvi
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+            if (level != null && !level.isClientSide()) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
         }
     };
 
@@ -70,9 +73,14 @@ public class ItemOutputHatchBlockEntity extends BlockEntity implements MenuProvi
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
+    private final LazyOptional<IItemHandler> internalCapability = LazyOptional.of(() ->itemHandler);
+
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            if (side == null){
+                return internalCapability.cast();
+            }
             return externalCapability.cast();
         }
         return super.getCapability(cap, side);

@@ -71,9 +71,14 @@ public class EnergyInputHatchBlockEntity extends BlockEntity {
         return this.energyStorage;
     }
 
+    private final LazyOptional<EnergyStorage> interCapability = LazyOptional.of(() ->energyStorage);
+
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ENERGY) {
+            if (side == null){
+                return interCapability.cast();
+            }
             return externalCapability.cast();
         }
         return super.getCapability(cap, side);
@@ -83,6 +88,7 @@ public class EnergyInputHatchBlockEntity extends BlockEntity {
     public void invalidateCaps() {
         super.invalidateCaps();
         externalCapability.invalidate();
+        interCapability.invalidate();
     }
 
     @Override

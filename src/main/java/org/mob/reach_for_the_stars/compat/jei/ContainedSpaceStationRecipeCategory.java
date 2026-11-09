@@ -34,7 +34,7 @@ public class ContainedSpaceStationRecipeCategory implements IRecipeCategory<Cont
     private final IDrawable arrow;
 
     public ContainedSpaceStationRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createBlankDrawable(200, 70);
+        this.background = helper.createBlankDrawable(200, 200);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.CONTAINED_SPACE_STATION_CONTROLLER.get()));
         this.arrow = helper.createAnimatedRecipeArrow(100);
     }
@@ -46,7 +46,7 @@ public class ContainedSpaceStationRecipeCategory implements IRecipeCategory<Cont
 
     @Override
     public Component getTitle() {
-        return Component.translatable("block.reach_for_the_stars.printer_3d_controller");
+        return Component.translatable("block.reach_for_the_stars.contained_space_station_controller");
     }
 
     @Override

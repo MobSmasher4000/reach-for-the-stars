@@ -59,9 +59,14 @@ public class FluidOutputHatchBlockEntity extends BlockEntity implements MenuProv
         return this.fluidTank;
     }
 
+    private final LazyOptional<IFluidHandler> internalCapability = LazyOptional.of(() -> fluidTank);
+
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.FLUID_HANDLER) {
+            if (side == null){
+                return internalCapability.cast();
+            }
             return externalCapability.cast();
         }
         return super.getCapability(cap, side);
@@ -71,6 +76,7 @@ public class FluidOutputHatchBlockEntity extends BlockEntity implements MenuProv
     public void invalidateCaps() {
         super.invalidateCaps();
         externalCapability.invalidate();
+        internalCapability.invalidate();
     }
 
     @Override
