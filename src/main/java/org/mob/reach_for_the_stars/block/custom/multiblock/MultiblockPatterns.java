@@ -51,4 +51,32 @@ public class MultiblockPatterns {
                 .where('I', state -> state.is(ModBlocks.FLUID_INPUT_HATCH.get()), ModBlocks.FLUID_INPUT_HATCH.get().defaultBlockState())
                 .build();
     }
+
+    public static void init1() {
+        FUEL_DISTILLERY = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        STEEL_DRILL = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        DESH_DRILL = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        OSTRUM_DRILL = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        CALORITE_DRILL = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        GLACIO_DRILL = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        T1_ROCKET_ASSEMBLER = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        T2_ROCKET_ASSEMBLER = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        T3_ROCKET_ASSEMBLER = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        T4_ROCKET_ASSEMBLER = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        T5_ROCKET_ASSEMBLER = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        PRINTER_3D = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        RITUAL_SITE = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        TRANSMUTATION_CONSTRUCTOR = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        SKYBLOCK_BUILDER = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+        CONTAINED_SPACE_STATION = MultiblockConfigLoader.loadFromConfig("contained_space_station.json");
+
+        STEEL_DRILL1 = MultiblockPattern.builder()
+                .layer(" H ",
+                        "I F",
+                        " C ")
+                .where('F', state -> state.is(ModBlocks.ITEM_OUTPUT_HATCH.get()), ModBlocks.ITEM_OUTPUT_HATCH.get().defaultBlockState())
+                .where('H', state -> state.is(ModBlocks.ENERGY_INPUT_HATCH.get()), ModBlocks.ENERGY_INPUT_HATCH.get().defaultBlockState())
+                .where('I', state -> state.is(ModBlocks.FLUID_INPUT_HATCH.get()), ModBlocks.FLUID_INPUT_HATCH.get().defaultBlockState())
+                .build();
+    }
 }

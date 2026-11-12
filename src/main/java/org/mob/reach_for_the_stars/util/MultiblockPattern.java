@@ -244,4 +244,41 @@ public class MultiblockPattern {
             return this.matchedBlocks;
         }
     }
+
+    public Map<BlockPos, BlockState> getBlueprint() {
+        Map<BlockPos, BlockState> blueprint = new HashMap<>();
+        int totalLayers = layers.size();
+        Direction facing = Direction.NORTH;
+
+        for (int l = 0; l < totalLayers; l++) {
+            String[] layer = layers.get(l);
+            for (int r = 0; r < layer.length; r++) {
+                String rowText = layer[r];
+                for (int c = 0; c < rowText.length(); c++) {
+                    char ch = rowText.charAt(c);
+                    if (ch == ' ') continue;
+
+                    PatternElement element = dictionary.get(ch);
+                    if (element == null || element.displayState == null) continue;
+
+                    int forwardOffset = r - centerRow;
+                    int rightOffset = centerCol - c;
+                    int upOffset = (totalLayers - 1 - l) - (totalLayers - 1 - centerLayer);
+
+                    BlockPos offsetPos = BlockPos.ZERO
+                            .relative(facing, forwardOffset)
+                            .relative(facing.getClockWise(), rightOffset)
+                            .above(upOffset);
+
+                    BlockState stateToDisplay = element.displayState;
+                    if (stateToDisplay.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+                        stateToDisplay = stateToDisplay.setValue(BlockStateProperties.HORIZONTAL_FACING, facing);
+                    }
+
+                    blueprint.put(offsetPos, stateToDisplay);
+                }
+            }
+        }
+        return blueprint;
+    }
 }

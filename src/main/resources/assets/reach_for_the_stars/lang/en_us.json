@@ -35,7 +35,7 @@
   "block.reach_for_the_stars.transmutation_constructor_controller": "Transmutation Constructor",
   "block.reach_for_the_stars.skyblock_builder_controller": "Skyblock Builder",
   "block.reach_for_the_stars.ritual_site_controller": "Ritual Site",
-  "block.reach_for_the_stars.contained_space_station_controller": "Contained Space Station",
+  "block.reach_for_the_stars.contained_space_station_controller": "Contained Solar System",
 
   "item.reach_for_the_stars.rfts" : "REACH FOR THE STARS",
   "item.reach_for_the_stars.mars_clay" : "Mars Clay",
@@ -100,5 +100,6 @@
   "tooltip.reach_for_the_stars.auto_build": "Hold Shift while placing the controller to auto build the multiblock.",
   "tooltip.reach_for_the_stars.t3_rocket_assembler_warning": "Energizing Rods may break and drop on ground when auto-placing, just put those back on the correct tier cable.",
   "category.reach_for_the_stars.planetary_drill": "Planetary drills",
-  "category.reach_for_the_stars.rocket_assembler": "Rocket Assemblers"
+  "category.reach_for_the_stars.rocket_assembler": "Rocket Assemblers",
+  "jei.reach_for_the_stars.multiblock": "Multiblock Preview"
 }
