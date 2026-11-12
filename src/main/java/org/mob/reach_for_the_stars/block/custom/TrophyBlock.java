@@ -1,10 +1,14 @@
 package org.mob.reach_for_the_stars.block.custom;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -19,7 +23,10 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 import org.mob.reach_for_the_stars.sound.ModSounds;
+
+import java.util.List;
 
 public class TrophyBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -78,5 +85,12 @@ public class TrophyBlock extends Block {
             pPlayer.playSound(ModSounds.PACK_COMPLETION.get(),1f,1f);
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+        pTooltip.add(Component.translatable("tooltip.reach_for_the_stars.trophy_block").withStyle(ChatFormatting.AQUA));
+        pTooltip.add(Component.translatable("tooltip.reach_for_the_stars.trophy_block_1").withStyle(ChatFormatting.AQUA));
+        super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
     }
 }

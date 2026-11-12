@@ -5,7 +5,7 @@
         "amount": 1000,
         "fluid": "reach_for_the_stars:glacio_drill_fluid"
     },
-    "dimension": "ad_astra:mars",
+    "dimension": "ad_astra:glacio",
     "result": {
         "count": 1,
         "item": "ad_astra:glacio_globe"

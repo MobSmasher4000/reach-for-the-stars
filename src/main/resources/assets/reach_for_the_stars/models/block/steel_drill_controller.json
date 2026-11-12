@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "down": "reach_for_the_stars:block/steel_drill_controller_side",
-    "east": "reach_for_the_stars:block/steel_drill_controller_side",
-    "north": "reach_for_the_stars:block/steel_drill_controller",
-    "particle": "reach_for_the_stars:block/steel_drill_controller_side",
-    "south": "reach_for_the_stars:block/steel_drill_controller_side",
-    "up": "reach_for_the_stars:block/steel_drill_controller_side",
-    "west": "reach_for_the_stars:block/steel_drill_controller_side"
+    "down": "reach_for_the_stars:block/drill/steel/side",
+    "east": "reach_for_the_stars:block/drill/steel/side",
+    "north": "reach_for_the_stars:block/drill/steel/front",
+    "particle": "reach_for_the_stars:block/drill/steel/side",
+    "south": "reach_for_the_stars:block/drill/steel/side",
+    "up": "reach_for_the_stars:block/drill/steel/side",
+    "west": "reach_for_the_stars:block/drill/steel/side"
   }
 }

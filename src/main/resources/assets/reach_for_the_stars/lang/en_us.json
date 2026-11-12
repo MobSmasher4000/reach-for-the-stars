@@ -13,6 +13,8 @@
 
 
   "block.reach_for_the_stars.completion_trophy": "Completion Trophy",
+  "tooltip.reach_for_the_stars.trophy_block": "Congratulation on completing the pack",
+  "tooltip.reach_for_the_stars.trophy_block_1": "DID tTe SiMuLaTiOn FaIl oR NoT FaIlEd",
   "sounds.reach_for_the_stars.pack_completion": "Completion Jingle",
 
   "block.reach_for_the_stars.fuel_distillery_controller": "Fuel Distillery",
